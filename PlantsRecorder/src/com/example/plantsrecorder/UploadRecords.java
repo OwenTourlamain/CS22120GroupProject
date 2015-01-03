@@ -5,6 +5,13 @@ package com.example.plantsrecorder;
  */
 public class UploadRecords
 {
-    public boolean checkForConnection() {}
-    public void synchroniseDatabase() {}
+    public boolean checkForConnection()
+    {
+        throw new UnsupportedOperationException( this.getClass().getName() + ": Unimplemented code." );
+    }
+
+    public void synchroniseDatabase()
+    {
+        throw new UnsupportedOperationException( this.getClass().getName() + ": Unimplemented code." );
+    }
 }

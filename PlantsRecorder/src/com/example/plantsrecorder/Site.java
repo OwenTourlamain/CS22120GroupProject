@@ -11,6 +11,7 @@ public class Site
 
     public Site( int id, String name, double lat, double lng )
     {
+        this.name = name;
         this.latitude = lat;
         this.longitude = lng;
     }
