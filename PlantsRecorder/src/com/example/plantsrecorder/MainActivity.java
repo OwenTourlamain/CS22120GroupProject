@@ -2,7 +2,6 @@ package com.example.plantsrecorder;
 
 import java.util.ArrayList;
 
-import android.R;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,14 +15,14 @@ public class MainActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_main);
-		setContentView(R.layout.details_entry_screen);
+		setContentView(R.layout.activity_main);
+		//setContentView(R.layout.details_entry_screen);
 		//setting up the DAFOR scale array list
-		daforScale.add (1, "D");
-		daforScale.add (2, "A");
-		daforScale.add (3, "F");
-		daforScale.add (4, "O");
-		daforScale.add (5, "R");
+		daforScale.add (0, "D");
+		daforScale.add (1, "A");
+		daforScale.add (2, "F");
+		daforScale.add (3, "O");
+		daforScale.add (4, "R");
 	}
 
 	@Override

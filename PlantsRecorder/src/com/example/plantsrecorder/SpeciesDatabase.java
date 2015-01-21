@@ -1,21 +1,16 @@
 package com.example.plantsrecorder;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteCursor;
-import android.database.sqlite.SQLiteCursorDriver;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteQuery;
-import android.database.sqlite.SQLiteQueryBuilder;
-import android.util.Base64;
-import android.util.Log;
-
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by adam on 31/12/14.
@@ -101,21 +96,7 @@ public class SpeciesDatabase
 
     public ArrayList<Record> getRecord()
     {
-        SQLiteDatabase readData = dbHelper.getReadableDatabase();
         ArrayList<Record> recordList = new ArrayList<Record>();
-
-        String columns[] =
-                {
-                        "_id",
-                        "recorder",
-                        "contact_number",
-                        "email",
-                        "SiteID",
-                        "SpeciesID",
-                        "time",
-                        "abundance",
-                        ""
-                };
 
         Cursor recordCursor = database.rawQuery( "select * from records", null );
         Cursor sitesCursor = database.rawQuery( "select * from sites", null );
@@ -154,7 +135,7 @@ public class SpeciesDatabase
                                     );
                         }
 
-                Record rec = new Record
+                recordList.add( new Record
                         (
                                 recordCursor.getInt( recordCursor.getColumnIndex( "_id" ) ),
                                 recordCursor.getString(recordCursor.getColumnIndex("recorder")),
@@ -162,11 +143,11 @@ public class SpeciesDatabase
                                 recordCursor.getString( recordCursor.getColumnIndex( "email" ) ),
                                 recSite,
                                 recSpecies,
-                                new SimpleDateFormat( recordCursor.getString( recordCursor.getColumnIndex( "time" ) ) ),
+                                new SimpleDateFormat( recordCursor.getString( recordCursor.getColumnIndex( "time" ) ), Locale.UK ),
                                 recordCursor.getString( recordCursor.getColumnIndex( "abundance" ) ).charAt( 0 ),
                                 recordCursor.getBlob( recordCursor.getColumnIndex( "scene_photo" ) ),
                                 recordCursor.getBlob( recordCursor.getColumnIndex( "specimen_photo" ) )
-                        );
+                        ) );
             }
         }
 
@@ -175,21 +156,7 @@ public class SpeciesDatabase
 
     public ArrayList<Record> getRecordList( String typeToFilter, String filter )
     {
-        SQLiteDatabase readData = dbHelper.getReadableDatabase();
         ArrayList<Record> recordList = new ArrayList<Record>();
-
-        String columns[] =
-                {
-                        "_id",
-                        "recorder",
-                        "contact_number",
-                        "email",
-                        "SiteID",
-                        "SpeciesID",
-                        "time",
-                        "abundance",
-                        ""
-                };
 
         Cursor recordCursor = database.rawQuery( "select * from records where "+typeToFilter+" == "+filter, null );
         Cursor sitesCursor = database.rawQuery( "select * from sites where "+typeToFilter+" == "+filter, null );
@@ -228,7 +195,7 @@ public class SpeciesDatabase
                                     );
                         }
 
-                Record rec = new Record
+                recordList.add( new Record
                         (
                                 recordCursor.getInt( recordCursor.getColumnIndex( "_id" ) ),
                                 recordCursor.getString(recordCursor.getColumnIndex("recorder")),
@@ -236,11 +203,11 @@ public class SpeciesDatabase
                                 recordCursor.getString( recordCursor.getColumnIndex( "email" ) ),
                                 recSite,
                                 recSpecies,
-                                new SimpleDateFormat( recordCursor.getString( recordCursor.getColumnIndex( "time" ) ) ),
+                                new SimpleDateFormat( recordCursor.getString( recordCursor.getColumnIndex( "time" ) ), Locale.UK ),
                                 recordCursor.getString( recordCursor.getColumnIndex( "abundance" ) ).charAt( 0 ),
                                 recordCursor.getBlob( recordCursor.getColumnIndex( "scene_photo" ) ),
                                 recordCursor.getBlob( recordCursor.getColumnIndex( "specimen_photo" ) )
-                        );
+                        ) );
             }
         }
 

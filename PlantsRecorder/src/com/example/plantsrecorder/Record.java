@@ -1,8 +1,5 @@
 package com.example.plantsrecorder;
 
-import android.text.format.Time;
-
-import java.io.File;
 import java.text.SimpleDateFormat;
 
 /**

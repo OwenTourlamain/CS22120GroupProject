@@ -6,17 +6,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="0.17" >
 
         <TextView
-            android:id="mainScreenAppTitle"
+            android:id="@+id/mainScreenAppTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/imageView1"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="60dp"
-            android:text="application name \n plus \n logo below"
+            android:text="@string/application_title"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <ImageView
@@ -26,7 +26,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="194dp"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/ic_launcher" android:contentDescription="TODO"/>
 
     </RelativeLayout>
 

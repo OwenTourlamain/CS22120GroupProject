@@ -11,11 +11,11 @@ public class RecordingList extends Activity
 {
     public ArrayList<Record> gatherRecordList()
     {
-
+    	return null;
     }
 
     public ArrayList<Record> gatherRecordList( String filter )
     {
-
+    	return null;
     }
 }
