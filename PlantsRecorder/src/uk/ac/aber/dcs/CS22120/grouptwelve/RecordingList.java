@@ -1,0 +1,21 @@
+package uk.ac.aber.dcs.CS22120.grouptwelve;
+
+import android.app.Activity;
+
+import java.util.ArrayList;
+
+/**
+ * Created by adam on 01/01/15.
+ */
+public class RecordingList extends Activity
+{
+    public ArrayList<Record> gatherRecordList()
+    {
+    	return null;
+    }
+
+    public ArrayList<Record> gatherRecordList( String filter )
+    {
+    	return null;
+    }
+}
