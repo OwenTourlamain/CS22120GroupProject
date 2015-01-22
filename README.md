@@ -1,5 +1,8 @@
-CS22120GroupProject
-===================
+### to-do list
 
-
-Current Build Status: Not compiling
+~~database~~
+internal database - 50% done
+Graphical interface
+GPS
+Camera
+Online connectivity
