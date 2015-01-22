@@ -4,7 +4,7 @@
 
 internal database - 50% done
 
-Graphical interface
+Graphical interface - Part done, now usable
 
 GPS
 
