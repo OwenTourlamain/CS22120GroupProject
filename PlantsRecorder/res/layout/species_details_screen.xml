@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <Button
+    		    android:id="@+id/homeButton2"
+    		    android:layout_width="75dp"
+    		    android:layout_height="45dp"
+    		    android:layout_alignParentLeft="true"
+    		    android:layout_alignParentTop="true"
+    		    android:layout_toLeftOf="@dimen/activity_horizontal_margin"
+    		    android:text="home" />
+        
+			<TextView
+            android:id="@+id/speciesDetailsMess"
+            android:layout_width="220dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/homeButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="Species details:"
+            android:textAppearance="?android:attr/textAppearanceMedium" /> 
+            
+			<TextView
+            android:id="@+id/nameEntryMess"
+            android:layout_width="220dp"
+            android:layout_height="30dp"
+            android:layout_alignLeft="@+id/speciesDetailsMess"
+            android:layout_below="@+id/speciesDetailsMess"
+            android:layout_marginTop="25dp"
+            android:text="name:"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+			
+			<EditText
+            android:id="@+id/nameEntryField"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:layout_alignLeft="@+id/nameEntryMess"
+            android:layout_below="@+id/nameEntryMess"
+            android:ems="10" />    
+        
+			<TextView
+            android:id="@+id/locationMess"
+            android:layout_width="220dp"
+            android:layout_height="30dp"
+            android:layout_alignLeft="@+id/nameEntryField"
+            android:layout_below="@+id/nameEntryField"
+            android:layout_marginTop="15dp"
+            android:text="get location from GPS"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+			<Button
+			android:id="@+id/gpsButton"
+			android:layout_width="220dp"
+			android:layout_height="50dp"
+			android:layout_below="@+id/locationMess"
+			android:layout_centerHorizontal="true"
+			android:text="GPS" />
+			
+			<TextView
+            android:id="@+id/daforScaleMess"
+            android:layout_width="220dp"
+            android:layout_height="30dp"
+            android:layout_alignLeft="@+id/gpsButton"
+            android:layout_below="@+id/gpsButton"
+            android:layout_marginTop="15dp"
+            android:text="DAFOR scale of abundance:"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>
