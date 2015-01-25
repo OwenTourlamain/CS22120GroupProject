@@ -15,7 +15,7 @@
             android:id="@+id/listOfRecordingsMess"
             android:layout_width="220dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/homeButton"
+            android:layout_below="@+id/homeButton1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:text="Create a new site:"
