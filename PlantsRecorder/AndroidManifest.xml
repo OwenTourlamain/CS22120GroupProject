@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="uk.ac.aber.dcs.CS22120.grouptwelve.androidcode"
+    
+    android:versionCode="1"
+    android:versionName="1.0" >
+    
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="21" />
+    <instrumentation android:name="android.test.InstrumentationTestRunner" android:targetPackage="uk.ac.aber.dcs.CS22120.grouptwelve.androidcode"></instrumentation>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity android:name=".MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailsActivity" >
+        </activity>
+        <activity android:name=".OptionsActivity" >
+        </activity>
+        <activity android:name=".CreateActivity" >
+        </activity>
+        <activity android:name=".EditActivity" >
+        </activity>
+        <activity
+            android:name=".SpeciesActivity"
+            android:label="@string/title_activity_species" >
+        </activity>
+        <activity
+            android:name=".SpeciesCreateActivity"
+            android:label="@string/title_activity_species_create" >
+        </activity>
+        <activity
+            android:name=".SpeciesDatabase"> 
+        </activity>
+        <uses-library android:name="android.test.runner" />
+    </application>
+</manifest>

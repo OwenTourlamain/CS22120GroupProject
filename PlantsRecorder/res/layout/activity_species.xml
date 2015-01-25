@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <Spinner
+        android:id="@+id/species_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/spinner_prompt" />
+    
+    
+
+    
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.62"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/radio_manual"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"
+                android:paddingTop="20px"
+                android:text="@string/spinner_submit" />
+
+            <RadioButton
+                android:id="@+id/radio_manual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="56dp"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/radio_manual" />
+
+        </RelativeLayout>
+
+    </RadioGroup>
+    
+    </LinearLayout>
+
