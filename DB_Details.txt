@@ -1,8 +1,8 @@
 DB Type = MySQL
-$mysql_host = "mysql17.000webhost.com";
-$mysql_database = "a8519300_db";
-$mysql_user = "a8519300_admin";
-$mysql_password = "";
+$mysql_host = "sql3.freesqldatabase.com";
+$mysql_database = "sql365389";
+$mysql_user = "sql365389";
+$mysql_password = "rX4%aI6!";
 
 Currently the tables are as follows:
 
