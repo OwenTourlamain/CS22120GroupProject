@@ -1,13 +1,12 @@
 package uk.ac.aber.dcs.CS22120.grouptwelve;
 
-import android.app.Activity;
-
 import java.util.ArrayList;
 
 /**
- * Created by adam on 01/01/15.
+ * Quite possibly a meaningless class, since species database contains
+ * the gatherRecordList method
  */
-public class RecordingList extends Activity
+public class RecordingList
 {
     public ArrayList<Record> gatherRecordList()
     {

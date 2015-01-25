@@ -1,7 +1,7 @@
 package uk.ac.aber.dcs.CS22120.grouptwelve;
 
 /**
- * Created by adam on 01/01/15.
+ * Simple object class to represent a species
  */
 public class Species {
 
@@ -9,8 +9,11 @@ public class Species {
 	private String name;
 	private String comment;
 
-	public species() {
-
+	public Species( int id, String name, String comment )
+	{
+		this.id = id;
+		this.name = name;
+		this.comment = comment;
 	}
 
 	public void setID(int i) {

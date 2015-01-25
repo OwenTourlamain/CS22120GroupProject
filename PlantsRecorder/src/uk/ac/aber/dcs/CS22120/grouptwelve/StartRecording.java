@@ -1,7 +1,7 @@
 package uk.ac.aber.dcs.CS22120.grouptwelve;
 
 /**
- * Created by adam on 31/12/14.
+ * Class for creating a recording, may need to be fused with the android class
  */
 public class StartRecording
 {

@@ -1,13 +1,11 @@
 package uk.ac.aber.dcs.CS22120.grouptwelve;
 
-import android.app.Activity;
 
 /**
  * This is the part of the app responsible for adding stuff to the database
  *
- * This should also feature the GUI(?)
  */
-public class NewRecord extends Activity
+public class NewRecord
 {
     private SpeciesDatabase database;
 
@@ -16,6 +14,12 @@ public class NewRecord extends Activity
         this.database = db;
     }
 
+    /**
+     * validate the given record
+     * 
+     * @param rec
+     * @return true if valid, false if not
+     */
     public boolean validateRecord( Record rec )
     {
         // do some validations, for example you might want to check
@@ -24,6 +28,11 @@ public class NewRecord extends Activity
         return true;
     }
 
+    /**
+     * add the supplied record to the database
+     * 
+     * @param rec
+     */
     public void addToDatabase( Record rec )
     {
         database.addRecord( rec );

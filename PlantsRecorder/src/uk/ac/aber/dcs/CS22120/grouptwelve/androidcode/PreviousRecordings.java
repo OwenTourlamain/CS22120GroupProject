@@ -7,6 +7,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+/**
+ * allows the user to view previous recordings and will contain a list of somesort
+ *
+ */
 public class PreviousRecordings extends Activity{
 
 	@Override

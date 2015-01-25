@@ -7,6 +7,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+/**
+ * Android activity for entering the details of the given record
+ *
+ */
 public class DetailsEntryScreen extends Activity {
 
 	@Override

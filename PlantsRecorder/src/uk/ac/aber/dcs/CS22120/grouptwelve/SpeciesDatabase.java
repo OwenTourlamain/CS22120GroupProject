@@ -1,274 +1,291 @@
 package uk.ac.aber.dcs.CS22120.grouptwelve;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.Date;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 /**
- * Created by adam on 31/12/14.
+ * This is a front-end for the local SQL database,
+ * entries can be added/removed/edited from here,
+ * then when ready the database will be synchronised
+ * with the site.
  */
 public class SpeciesDatabase
 {
     private SQLiteDatabase database;
-    private DatabaseHelper dbHelper;
+    private DatabaseHelper dbHelper; // an sql wrapper
 
+    /**
+     * @param context current android context, used to initialise the DB helper
+     */
     public SpeciesDatabase( Context context )
     {
         dbHelper = new DatabaseHelper( context );
     }
 
-    public void startDatabase() throws SQLException
+    /**
+     * Initialises the database
+     * @throws SQLException
+     */
+    public void startSpeciesDatabase() throws SQLException
     {
         database = dbHelper.getWritableDatabase();
     }
 
-    public void closeDatabase()
+    /**
+     * Stop the SQL database
+     */
+    public void closeSpeciesDatabase()
     {
+        database.close();
         dbHelper.close();
     }
 
+    /**
+     * Adds the record to the database
+     * 
+     * @param rec the record to be added
+     */
     public void addRecord( Record rec )
     {
-        database.insert( "sites", null, getSiteValues( rec.site ) );
-        database.insert( "plants", null, getSpecieValues( rec.species ) );
-        database.insert( "records", null, getRecordValues( rec ) );
+        database.insert( "SITES", null, getSiteValues( rec.getSite() ) );
+        database.insert( "SPECIES", null, getSpecieValues( rec.getSpecies() ) );
+        database.insert( "RECORDS", null, getRecordValues( rec ) );
     }
 
+    /**
+     * removes the given record from the database
+     * 
+     * @param rec
+     */
     public void removeRecord( Record rec )
     {
-        long rec_id = rec.id;
-        long site_id = rec.site.getID();
-        long specie_id = rec.species.getID();
+        long rec_id = rec.getId();
+        long site_id = rec.getSite().getID();
+        long specie_id = rec.getSpecies().getID();
 
-        database.delete( "records", "_id = " + rec_id, null );
-        database.delete( "sites", "_id = " + site_id, null );
-        database.delete( "plants", "_id = " + specie_id, null );
+        database.delete( "RECORDS", "RecordID = " + rec_id, null );
+        database.delete( "SITES", "SiteID = " + site_id, null );
+        database.delete( "SPECIES", "SpeciesID = " + specie_id, null );
     }
 
+    /**
+     * Updates the given record with a newer record
+     * 
+     * @param rOld
+     * @param rNew
+     */
     public void updateRecord( Record rOld, Record rNew )
     {
         removeRecord( rOld );
         addRecord( rNew );
     }
 
+    /**
+     * Converts the species into a format more usable by
+     * the database
+     * 
+     * @param s
+     * @return
+     */
     private ContentValues getSpecieValues( Species s )
     {
         ContentValues specieValues = new ContentValues();
 
-        specieValues.put( "_id", s.getID() );
-        specieValues.put( "species", s.getName() );
+        specieValues.put( "SpeciesID", s.getID() );
+        specieValues.put( "Name", s.getName() );
 
         return specieValues;
     }
 
+    /**
+     * converts the given site into the database format
+     * 
+     * @param s
+     * @return
+     */
     private ContentValues getSiteValues( Site s )
     {
         ContentValues siteValues = new ContentValues();
 
-        siteValues.put( "_id", s.getID() );
-        siteValues.put( "name", s.getName() );
-        siteValues.put( "latitude", s.getLatitude() );
-        siteValues.put( "longitude", s.getLongitude() );
+        siteValues.put( "SiteID", s.getID() );
+        siteValues.put( "Name", s.getName() );
+        siteValues.put( "Location", s.getGridReference() );
+        siteValues.put( "Description", s.getDescription() );
 
         return siteValues;
     }
 
+    /**
+     * converts the given record into the database format
+     * 
+     * @param rec
+     * @return
+     */
     private ContentValues getRecordValues( Record rec )
     {
         ContentValues recordValues = new ContentValues();
 
-        recordValues.put( "_id", rec.id );
-        recordValues.put( "recorder", rec.recorder );
-        recordValues.put( "contact_number", rec.contactNum );
-        recordValues.put("SiteID", rec.site.getID());
-        recordValues.put("SpeciesID", rec.species.getID());
+        recordValues.put( "RecordID", rec.getId() );
+        recordValues.put( "Recorder", rec.getRecorder() );
+        recordValues.put( "ContactNumber", rec.getContactNum() );
+        recordValues.put( "Email", rec.getEmail() );
+        recordValues.put("SiteID", rec.getSite().getID());
+        recordValues.put("SpeciesID", rec.getSpecies().getID());
+        recordValues.put( "Time", rec.getTime().toString() );
+        recordValues.put( "Longitude", rec.getLongitude() );
+        recordValues.put( "Latitude", rec.getLatitude() );
+        recordValues.put( "Abundance", "" + rec.getAbundance() );
+        recordValues.put( "SceneImg", rec.getScenePhoto() );
+        recordValues.put( "SpecimenImg", rec.getSpecimenPhoto() );
 
         return recordValues;
     }
 
-    public ArrayList<Record> getRecord()
+    /**
+     * Used to acquire an unfiltered list of all RECORDS
+     * currently in the database
+     * 
+     * @return the unfiltered list
+     */
+    public ArrayList<Record> getRecordList()
     {
         ArrayList<Record> recordList = new ArrayList<Record>();
-
-        Cursor recordCursor = database.rawQuery( "select * from records", null );
-        Cursor sitesCursor = database.rawQuery( "select * from sites", null );
-        Cursor plantsCursor = database.rawQuery( "select * from plants", null );
+        Site recSite = null;
+        Species recSpecies = null;
+        
+        Cursor recordCursor = database.rawQuery( "SELECT * FROM RECORDS", null );
+        Cursor sitesCursor = database.rawQuery( "SELECT * FROM SITES", null );
+        Cursor speciesCursor = database.rawQuery( "SELECT * FROM SPECIES", null );
 
         if( recordCursor.moveToNext() )
         {
             while( recordCursor.isAfterLast() == false )
             {
-                Site recSite = null;
-                Species recSpecies = null;
+                recSite = makeSite( recordCursor, sitesCursor );
+                recSpecies = makeSpecies( recordCursor, sitesCursor );
 
-                if( sitesCursor.moveToNext() )
-                    while( sitesCursor.isAfterLast() == false )
-                        if( recordCursor.getInt( recordCursor.getColumnIndex( "_id" ) )
-                                == sitesCursor.getInt( sitesCursor.getColumnIndex( "_id" ) ) )
-                        {
-                            recSite = new Site
-                                    (
-                                            sitesCursor.getInt( sitesCursor.getColumnIndex( "_id" ) ),
-                                            sitesCursor.getString( sitesCursor.getColumnIndex( "name" ) ),
-                                            sitesCursor.getDouble( sitesCursor.getColumnIndex( "latitude" ) ),
-                                            sitesCursor.getDouble( sitesCursor.getColumnIndex( "longitude" ) )
-                                    );
-                        }
-
-                if( plantsCursor.moveToNext() )
-                    while( plantsCursor.isAfterLast() == false )
-                        if( recordCursor.getInt( recordCursor.getColumnIndex( "_id" ) )
-                                == plantsCursor.getInt( plantsCursor.getColumnIndex( "_id" ) ) )
-                        {
-                            recSpecies = new Species
-                                    (
-                                            plantsCursor.getInt( plantsCursor.getColumnIndex( "_id" ) ),
-                                            plantsCursor.getString( plantsCursor.getColumnIndex( "name" ) )
-                                    );
-                        }
-
-                recordList.add( new Record
-                        (
-                                recordCursor.getInt( recordCursor.getColumnIndex( "_id" ) ),
-                                recordCursor.getString(recordCursor.getColumnIndex("recorder")),
-                                recordCursor.getString( recordCursor.getColumnIndex( "contact_number" ) ),
-                                recordCursor.getString( recordCursor.getColumnIndex( "email" ) ),
-                                recSite,
-                                recSpecies,
-                                new SimpleDateFormat( recordCursor.getString( recordCursor.getColumnIndex( "time" ) ), Locale.UK ),
-                                recordCursor.getString( recordCursor.getColumnIndex( "abundance" ) ).charAt( 0 ),
-                                recordCursor.getBlob( recordCursor.getColumnIndex( "scene_photo" ) ),
-                                recordCursor.getBlob( recordCursor.getColumnIndex( "specimen_photo" ) )
-                        ) );
+                recordList.add( makeNewRecord( recordCursor, sitesCursor, speciesCursor, recSite, recSpecies ) );
             }
         }
 
         return recordList;
     }
 
+    /**
+     * returns a list that contains only entries matching the given filter criteria
+     * 
+     * @param typeToFilter
+     * @param filter
+     * @return
+     */
     public ArrayList<Record> getRecordList( String typeToFilter, String filter )
     {
         ArrayList<Record> recordList = new ArrayList<Record>();
 
-        Cursor recordCursor = database.rawQuery( "select * from records where "+typeToFilter+" == "+filter, null );
-        Cursor sitesCursor = database.rawQuery( "select * from sites where "+typeToFilter+" == "+filter, null );
-        Cursor plantsCursor = database.rawQuery( "select * from plants where "+typeToFilter+" == "+filter, null );
+        Cursor recordCursor = database.rawQuery( "select * from RECORDS where "+typeToFilter+" == "+filter, null );
+        Cursor sitesCursor = database.rawQuery( "select * from SITES where "+typeToFilter+" == "+filter, null );
+        Cursor speciesCursor = database.rawQuery( "select * from SPECIES where "+typeToFilter+" == "+filter, null );
 
         if( recordCursor.moveToNext() )
         {
             while( recordCursor.isAfterLast() == false )
             {
-                Site recSite = null;
-                Species recSpecies = null;
-
-                if( sitesCursor.moveToNext() )
-                    while( sitesCursor.isAfterLast() == false )
-                        if( recordCursor.getInt( recordCursor.getColumnIndex( "_id" ) )
-                                == sitesCursor.getInt( sitesCursor.getColumnIndex( "_id" ) ) )
-                        {
-                            recSite = new Site
-                                    (
-                                            sitesCursor.getInt( sitesCursor.getColumnIndex( "_id" ) ),
-                                            sitesCursor.getString( sitesCursor.getColumnIndex( "name" ) ),
-                                            sitesCursor.getDouble( sitesCursor.getColumnIndex( "latitude" ) ),
-                                            sitesCursor.getDouble( sitesCursor.getColumnIndex( "longitude" ) )
-                                    );
-                        }
-
-                if( plantsCursor.moveToNext() )
-                    while( plantsCursor.isAfterLast() == false )
-                        if( recordCursor.getInt( recordCursor.getColumnIndex( "_id" ) )
-                                == plantsCursor.getInt( plantsCursor.getColumnIndex( "_id" ) ) )
-                        {
-                            recSpecies = new Species
-                                    (
-                                            plantsCursor.getInt( plantsCursor.getColumnIndex( "_id" ) ),
-                                            plantsCursor.getString( plantsCursor.getColumnIndex( "name" ) )
-                                    );
-                        }
-
-                recordList.add( new Record
-                        (
-                                recordCursor.getInt( recordCursor.getColumnIndex( "_id" ) ),
-                                recordCursor.getString(recordCursor.getColumnIndex("recorder")),
-                                recordCursor.getString( recordCursor.getColumnIndex( "contact_number" ) ),
-                                recordCursor.getString( recordCursor.getColumnIndex( "email" ) ),
-                                recSite,
-                                recSpecies,
-                                new SimpleDateFormat( recordCursor.getString( recordCursor.getColumnIndex( "time" ) ), Locale.UK ),
-                                recordCursor.getString( recordCursor.getColumnIndex( "abundance" ) ).charAt( 0 ),
-                                recordCursor.getBlob( recordCursor.getColumnIndex( "scene_photo" ) ),
-                                recordCursor.getBlob( recordCursor.getColumnIndex( "specimen_photo" ) )
-                        ) );
+            	Site recSite = makeSite( recordCursor, sitesCursor );
+            	Species recSpecies = makeSpecies( recordCursor, speciesCursor );
+                recordList.add( makeNewRecord( recordCursor, sitesCursor, speciesCursor, recSite, recSpecies ) );
             }
         }
 
         return recordList;
     }
-}
-
-class DatabaseHelper extends SQLiteOpenHelper // Private helper class
-{
-    private static final String DATABASE_NAME = "records.db";
-    private static final int DATABASE_VERSION = 1;
-
-    private static final String CREATE_PLANTS_TABLE =
-            "create table plants ("
-            +"_id integer primary key"
-            +"species text not null )";
-
-    private static final String CREATE_RECORDS_TABLE =
-            "create table records ("
-            +"_id integer primary key"
-            +"recorder text not null"
-            +"contact_number text"
-            +"SiteID integer foreign key"
-            +"SpeciesID integer foreign key"
-            +"time datetime"
-            +"abundance character"
-            +"scene_photo blob"
-            +"specimen_photo blob";
-
-    private static final String CREATE_SITES_TABLE =
-            "create table sites ("
-            +"_id integer primary key"
-            +"name text not null"
-            +"latitude double precision"
-            +"longitude double precision";
-
-    private static final String DATABASE_CREATE =
-             CREATE_PLANTS_TABLE
-            +CREATE_SITES_TABLE
-            +CREATE_RECORDS_TABLE;
-
-    public DatabaseHelper( Context context )
+    
+    /**
+     * refactored method to make constructing a record easier
+     * 
+     * @param recordCursor
+     * @param sitesCursor
+     * @param speciesCursor
+     * @return
+     */
+    private Record makeNewRecord( Cursor recordCursor, Cursor sitesCursor, Cursor speciesCursor, Site recSite, Species recSpecies )
     {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        return new Record
+        (
+            recordCursor.getInt( recordCursor.getColumnIndex( "RecordID" ) ),
+            recordCursor.getString(recordCursor.getColumnIndex("Recorder")),
+            recordCursor.getString( recordCursor.getColumnIndex( "ContactNumber" ) ),
+            recordCursor.getString( recordCursor.getColumnIndex( "Email" ) ),
+            recSite,
+            recSpecies,
+            recordCursor.getDouble( recordCursor.getColumnIndex( "Latitude" ) ),
+            recordCursor.getDouble( recordCursor.getColumnIndex( "Longitude" ) ),
+            new Date( recordCursor.getLong( recordCursor.getColumnIndex( ""))),
+            recordCursor.getString( recordCursor.getColumnIndex( "Abundance" ) ).charAt( 0 ),
+            recordCursor.getString( recordCursor.getColumnIndex( "ScenePhoto" ) ),
+            recordCursor.getString( recordCursor.getColumnIndex( "SpecimenPhoto" ) )
+        );
     }
 
-    @Override
-    public void onCreate( SQLiteDatabase db )
-    {
-        db.execSQL(DATABASE_CREATE);
-    }
+    /**
+     * Refactored method to make constructing a species easier
+     * 
+     * @param recordCursor
+     * @param speciesCursor
+     * @param recSpecies
+     * @return
+     */
+	private Species makeSpecies(Cursor recordCursor, Cursor speciesCursor )
+	{
+		Species recSpecies = null;
+		
+		if( speciesCursor.moveToNext() )
+		    while( speciesCursor.isAfterLast() == false )
+		        if( recordCursor.getInt( recordCursor.getColumnIndex( "RecordID" ) )
+		                == speciesCursor.getInt( speciesCursor.getColumnIndex( "SpeciesID" ) ) )
+		        {
+		            recSpecies = new Species
+		                    (
+		                            speciesCursor.getInt( speciesCursor.getColumnIndex( "SpeciesID" ) ),
+		                            speciesCursor.getString( speciesCursor.getColumnIndex( "Name" ) ),
+		                            speciesCursor.getString( speciesCursor.getColumnIndex( "Comment" ) )
+		                    );
+		        }
+		
+		return recSpecies;
+	}
 
-    @Override
-    public void onUpgrade( SQLiteDatabase db, int oldVersion, int newVersion )
-    {
-        Log.w(SpeciesDatabase.class.getName(),
-                "Upgrading database from version " + oldVersion + " to "
-                        + newVersion + "which will destroy all old data");
-
-        db.execSQL( "DROP TABLE IF EXISTS plants" );
-        db.execSQL("DROP TABLE IF EXISTS sites");
-        db.execSQL("DROP TABLE IF EXISTS records");
-    }
+	/**
+	 * Refactored method to make constructing a species easier
+	 * 
+	 * @param recordCursor
+	 * @param sitesCursor
+	 * @param recSite
+	 * @return
+	 */
+	private Site makeSite(Cursor recordCursor, Cursor sitesCursor )
+	{
+		Site recSite = null;
+		
+		if( sitesCursor.moveToNext() )
+		    while( sitesCursor.isAfterLast() == false )
+		        if( recordCursor.getInt( recordCursor.getColumnIndex( "RecordID" ) )
+		                == sitesCursor.getInt( sitesCursor.getColumnIndex( "SiteID" ) ) )
+		        {
+		            recSite = new Site
+		                    (
+		                            sitesCursor.getInt( sitesCursor.getColumnIndex( "SiteID" ) ),
+		                            sitesCursor.getString( sitesCursor.getColumnIndex( "Name" ) ),
+		                            sitesCursor.getString( sitesCursor.getColumnIndex( "Location" ) ),
+		                            sitesCursor.getString( sitesCursor.getColumnIndex( "Description" ) )
+		                    );
+		        }
+		
+		return recSite;
+	}
 }

@@ -1,5 +1,10 @@
 package uk.ac.aber.dcs.CS22120.grouptwelve.androidcode;
 
+/*
+ * This page lets the User add a species from a drop down BSBI list
+ * or give the option to add a species manually
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +28,8 @@ public class SpeciesActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_species);
- 
+        
+        //Drop down list
         spinner1 = (Spinner) findViewById(R.id.species_spinner);
         List<String> list = new ArrayList<String>();
         // will be populated using BSBI list
@@ -81,6 +87,7 @@ public class SpeciesActivity extends Activity {
  
     }
     
+    //radio button to give user the option to create a species manually
     public void onRadioButtonClicked(View view) {
 	    // Is the button now checked?
 	    boolean checked = ((RadioButton) view).isChecked();

@@ -1,6 +1,5 @@
 package uk.ac.aber.dcs.CS22120.grouptwelve;
 
-import android.app.Activity;
 
 /**
  * Page for editing the record
@@ -8,7 +7,7 @@ import android.app.Activity;
  * Probably might be GUI as well
  *
  */
-public class EditRecording extends Activity
+public class EditRecording
 {
     private SpeciesDatabase database;
     private Record recToEdit, newRecord;
@@ -20,7 +19,6 @@ public class EditRecording extends Activity
         this.recToEdit = rec;
         newRecord = new Record( rec );
 
-        // set GUI elements to record data here
     }
 
     /**
@@ -29,12 +27,12 @@ public class EditRecording extends Activity
      */
     public void editLocation( Site s )
     {
-        recToEdit.site = s;
+        recToEdit.setSite(s);
     }
 
     public void editSpecies( Species s )
     {
-        recToEdit.species = s;
+        recToEdit.setSpecies(s);
     }
 
     /**

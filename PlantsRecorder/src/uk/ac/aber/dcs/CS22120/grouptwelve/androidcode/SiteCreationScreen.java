@@ -7,6 +7,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+/**
+ * this android class allows the user to create a site and attach it to the record
+ *
+ */
 public class SiteCreationScreen extends Activity {
 
 	@Override

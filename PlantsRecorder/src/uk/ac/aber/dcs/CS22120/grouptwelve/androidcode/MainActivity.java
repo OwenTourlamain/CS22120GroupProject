@@ -1,31 +1,58 @@
 package uk.ac.aber.dcs.CS22120.grouptwelve.androidcode;
 
+/*
+ * This is the main page
+ */
+
+import java.sql.SQLException;
+
+import uk.ac.aber.dcs.CS22120.grouptwelve.SpeciesDatabase;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainActivity extends Activity {
+	private Button mDetailsButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main_menu);
 		
-		/**
-		 * Adding functionality to buttons 
-		 */
-		Button goButton = (Button) findViewById(R.id.button1);
-		goButton.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent intent = new Intent(v.getContext(), DetailsEntryScreen.class);
-				startActivityForResult(intent, 0);
-			}
-		});
+		SpeciesDatabase test = new SpeciesDatabase( this.getApplicationContext() );
+		
+		try
+		{
+			test.startSpeciesDatabase();
+			
+		} catch( SQLException e )
+		{
+			Log.v( "SpeciesDatabase", "Could not open database!" );
+		}
+		
+		test.closeSpeciesDatabase();
+		
+		setContentView(R.layout.activity_main);
+		mDetailsButton = (Button)findViewById(R.id.details_button);
+	
+	
+	mDetailsButton.setOnClickListener(new View.OnClickListener() {
+		
+		
+		public void onClick(View v) {
+			Intent myIntent = new Intent(v.getContext(), DetailsActivity.class);
+            startActivityForResult(myIntent, 0);
+			
+		}});
+	
+		
+		
 	}
-/*
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -44,5 +71,4 @@ public class MainActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	*/
 }

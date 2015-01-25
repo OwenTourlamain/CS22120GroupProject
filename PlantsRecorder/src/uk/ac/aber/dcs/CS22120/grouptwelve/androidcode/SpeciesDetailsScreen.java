@@ -7,6 +7,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+/**
+ * allows the user to create a species record and attach it to the
+ * current record
+ *
+ */
 public class SpeciesDetailsScreen extends Activity {
 
 	@Override

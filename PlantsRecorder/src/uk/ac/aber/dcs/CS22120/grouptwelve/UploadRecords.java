@@ -1,7 +1,8 @@
 package uk.ac.aber.dcs.CS22120.grouptwelve;
 
 /**
- * Created by adam on 31/12/14.
+ * this is the class responsible for checking and uploading to the server
+ * when an Internet connection is available
  */
 public class UploadRecords
 {

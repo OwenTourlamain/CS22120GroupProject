@@ -8,7 +8,7 @@ import android.widget.EditText;
  */
 public class AddRecording
 {
-    ArrayList<species> plantList = new ArrayList<species>();
+    ArrayList<Species> plantList = new ArrayList<Species>();
 	private EditText edittext;
 	private EditText name;
 	private EditText id;
@@ -21,19 +21,19 @@ public class AddRecording
     
     public void addSpecies() {
         
-        name = (EditText) findViewById(R.id.nameEntryField);
-		id = (EditText) findViewById(R.id.idEntryField);
-		comment = (EditText) findViewById(R.id.commentEntryField);
-
-		species tempSpecies = new species();
-		tempSpecies.setID(id);
-		tempSpecies.setName(name);
-		tempSpecies.setComment(comment);
-		plantList.add(tempSpecies);
+//        name = (EditText) findViewById(R.id.nameEntryField);
+//		id = (EditText) findViewById(R.id.idEntryField);
+//		comment = (EditText) findViewById(R.id.commentEntryField);
+//
+//		Species tempSpecies = new Species();
+//		tempSpecies.setID(id);
+//		tempSpecies.setName(name);
+//		tempSpecies.setComment(comment);
+//		plantList.add(tempSpecies);
     }
     
     public void addDescription() {
-        	edittext = (EditText) findViewById(R.id.commentsEntryField);
+//        	edittext = (EditText) findViewById(R.id.commentsEntryField);
     }
     
     public void addPhoto() {}
