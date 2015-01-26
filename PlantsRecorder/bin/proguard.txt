@@ -1,32 +1,42 @@
 # view AndroidManifest.xml #generated:17
 -keep class android.test.InstrumentationTestRunner { <init>(...); }
 
-# view AndroidManifest.xml #generated:35
--keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.CreateActivity { <init>(...); }
+# view AndroidManifest.xml #generated:55
+-keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.AddingSpecies { <init>(...); }
 
-# view AndroidManifest.xml #generated:31
--keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.DetailsActivity { <init>(...); }
+# view AndroidManifest.xml #generated:46
+-keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.BsbiControl { <init>(...); }
 
-# view AndroidManifest.xml #generated:37
--keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.EditActivity { <init>(...); }
+# view AndroidManifest.xml #generated:52
+-keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.DaforScale { <init>(...); }
+
+# view AndroidManifest.xml #generated:34
+-keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.DetailsEntryScreen { <init>(...); }
+
+# view AndroidManifest.xml #generated:58
+-keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.EditSpeciesSelector { <init>(...); }
+
+# view AndroidManifest.xml #generated:67
+-keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.EditingData { <init>(...); }
 
 # view AndroidManifest.xml #generated:24
 -keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.MainActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:33
--keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.OptionsActivity { <init>(...); }
+# view AndroidManifest.xml #generated:37
+-keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.PreviousRecordings { <init>(...); }
 
-# view AndroidManifest.xml #generated:39
--keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.SpeciesActivity { <init>(...); }
+# view AndroidManifest.xml #generated:49
+-keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.SiteControl { <init>(...); }
+
+# view AndroidManifest.xml #generated:40
+-keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.SiteCreationScreen { <init>(...); }
 
 # view AndroidManifest.xml #generated:43
--keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.SpeciesCreateActivity { <init>(...); }
+-keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.SpeciesDetailsScreen { <init>(...); }
 
-# view AndroidManifest.xml #generated:47
--keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.SpeciesDatabase { <init>(...); }
+# view AndroidManifest.xml #generated:61
+-keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.SpeciesSelect { <init>(...); }
 
-# onClick res/layout/activity_options.xml #generated:13
-# onClick res/layout/activity_options.xml #generated:20
-# onClick res/layout/activity_species.xml #generated:36
--keepclassmembers class * { *** onRadioButtonClicked(...); }
+# view AndroidManifest.xml #generated:64
+-keep class uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.SpecimenEditScreen { <init>(...); }
 

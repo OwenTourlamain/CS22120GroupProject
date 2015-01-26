@@ -8,6 +8,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 /**
  * This is a front-end for the local SQL database,
@@ -53,8 +54,11 @@ public class SpeciesDatabase
      */
     public void addRecord( Record rec )
     {
+    	Log.v( "SpeciesDatabase", "Logging site id:" + rec.getSite().getID() );
         database.insert( "SITES", null, getSiteValues( rec.getSite() ) );
+        Log.v("SpeciesDatabase", "Logging species id:" + rec.getSpecies().getID() );
         database.insert( "SPECIES", null, getSpecieValues( rec.getSpecies() ) );
+        Log.v( "SpeciesDatabase", "Logging record id:" + rec.getId() );
         database.insert( "RECORDS", null, getRecordValues( rec ) );
     }
 
@@ -65,13 +69,7 @@ public class SpeciesDatabase
      */
     public void removeRecord( Record rec )
     {
-        long rec_id = rec.getId();
-        long site_id = rec.getSite().getID();
-        long specie_id = rec.getSpecies().getID();
-
-        database.delete( "RECORDS", "RecordID = " + rec_id, null );
-        database.delete( "SITES", "SiteID = " + site_id, null );
-        database.delete( "SPECIES", "SpeciesID = " + specie_id, null );
+    	// some kind of mark for deletion field
     }
 
     /**

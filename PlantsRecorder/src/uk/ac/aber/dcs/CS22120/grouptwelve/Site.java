@@ -1,11 +1,17 @@
 package uk.ac.aber.dcs.CS22120.grouptwelve;
 
+import java.io.Serializable;
+
 /**
  * simple container object for a site record
  */
-public class Site
+public class Site implements Serializable
 {
-    private int id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7399586458373747320L;
+	private int id;
     private String name;
     private String gridRef;
     private String description;

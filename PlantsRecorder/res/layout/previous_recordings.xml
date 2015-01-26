@@ -2,32 +2,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
+
     <Button
-            android:id="@+id/homeButton3"
-            android:layout_width="75dp"
-            android:layout_height="45dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:text="home" />
-    
+        android:id="@+id/homeButton4"
+        android:layout_width="75dp"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="home" />
+
     <TextView
         android:id="@+id/listOfRecordingsMess"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_below="@+id/homeButton3"
+        android:layout_below="@+id/homeButton4"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:text="List of recordings:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ListView
-        android:id="@+id/listView1"
-        android:layout_width="match_parent"
+        android:id="@+id/recordView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/listOfRecordingsMess"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp" >
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/listOfRecordingsMess" >
     </ListView>
 
 </RelativeLayout>
