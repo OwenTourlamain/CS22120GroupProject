@@ -1,3 +1,11 @@
+/*
+* @(#) BsbiControl.java 1.1 2015-01-27
+*
+* Copyright (c) 2015 Aberystwyth University.
+* All rights reserved.
+*
+*/ 
+
 package uk.ac.aber.dcs.CS22120.grouptwelve.androidcode;
 
 /**
@@ -5,6 +13,19 @@ package uk.ac.aber.dcs.CS22120.grouptwelve.androidcode;
  * 1. data in the list pulled from the database
  * 2. positions on the list clickable, adding the BSBI position to the the site data
  */
+ 
+ 
+
+/**
+* BsbiControl - A class that does something.
+* <p>
+* How it is used
+*
+* @author (name)
+* @since 1.0
+* @version 1.X (put status of version here)
+* @see (ref to related classes)
+*/ 
 
 import java.sql.SQLException;
 import java.util.ArrayList;
