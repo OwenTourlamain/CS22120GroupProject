@@ -1,5 +1,5 @@
 /*
-* @(#) SomeClass.java 1.1 2015-01-27
+* @(#) Species.java 1.1 2015-01-27
 *
 * Copyright (c) 2015 Aberystwyth University.
 * All rights reserved.
