@@ -1,3 +1,10 @@
+/*
+* @(#) SiteControl.java 1.1 2015-01-27
+*
+* Copyright (c) 2015 Aberystwyth University.
+* All rights reserved.
+*
+*/ 
 package uk.ac.aber.dcs.CS22120.grouptwelve.androidcode;
 
 import java.sql.SQLException;
@@ -18,7 +25,16 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
-
+/**
+* SiteControl - A class that does something.
+* <p>
+* How it is used
+*
+* @author (name)
+* @since 1.0
+* @version 1.X (put status of version here)
+* @see (ref to related classes)
+*/ 
 public class SiteControl extends Activity {
 
 	EditText editsearch;								//for the text field on the top to search for positions
