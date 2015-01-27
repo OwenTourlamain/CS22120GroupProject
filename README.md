@@ -1,4 +1,7 @@
 #TODO-LIST
+
+Ability to add/edit/remove entries is not yet implemented, although the infrastructure is there.
+
 - ##### GUI
  - Link camera and GPS functionality to input screen
  - Perform validation on input
