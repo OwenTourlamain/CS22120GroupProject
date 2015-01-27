@@ -1,3 +1,11 @@
+/*
+* @(#) SomeClass.java 1.1 2015-01-27
+*
+* Copyright (c) 2015 Aberystwyth University.
+* All rights reserved.
+*
+*/ 
+
 package uk.ac.aber.dcs.CS22120.grouptwelve;
 
 import java.io.Serializable;
@@ -5,6 +13,17 @@ import java.io.Serializable;
 /**
  * Simple object class to represent a species
  */
+ 
+/**
+* Species - Simple object class to represent a species
+* <p>
+* How it is used
+*
+* @author (name)
+* @since 1.0
+* @version 1.X (put status of version here)
+* @see (ref to related classes)
+*/ 
 public class Species implements Serializable
 {
 
