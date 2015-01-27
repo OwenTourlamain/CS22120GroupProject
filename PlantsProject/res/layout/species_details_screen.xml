@@ -12,8 +12,8 @@
 
         <Button
             android:id="@+id/homeButton3"
-            android:layout_width="75dp"
-            android:layout_height="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@dimen/activity_horizontal_margin"
