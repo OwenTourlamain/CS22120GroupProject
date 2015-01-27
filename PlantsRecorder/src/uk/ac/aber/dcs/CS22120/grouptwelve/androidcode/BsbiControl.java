@@ -20,6 +20,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +33,7 @@ public class BsbiControl extends Activity {
 	ListView listView;									//used to display all the positions
 	private ArrayList<String> bsbiList;					//holds the data from the database
 	private SpeciesDatabase speciesDb;
+	private Record currentRecord;
 	
 	
 	@Override
@@ -38,15 +41,6 @@ public class BsbiControl extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bsbi_control_view);
 		
-		try
-		{
-			speciesDb = new SpeciesDatabase( this.getApplicationContext() );
-			speciesDb.startSpeciesDatabase();
-			
-		} catch( SQLException sqle )
-		{
-			Log.e( "SpeciesDatabase", "Could not connect to species database!" );
-		}
 		
 		editsearch = (EditText)findViewById(R.id.bsbi_search);
 		listView = (ListView)findViewById(R.id.bsbi_view);
@@ -56,6 +50,18 @@ public class BsbiControl extends Activity {
         
         //the simple_list_item_1 used below is a part of inbuilt xml layouts, can be changed if needed 
         listView.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, bsbiList));
+        listView.setOnItemClickListener( new OnItemClickListener()
+        {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+			{
+				Intent intent = new Intent( view.getContext(), RecordingDataSubmitScreen.class );
+				
+				
+				intent.putExtra( "newRecord", currentRecord );
+			}
+        	
+        } );
         
         //adding the text watcher and functions it needs to perform
         editsearch.addTextChangedListener(new TextWatcher() {
@@ -91,17 +97,6 @@ public class BsbiControl extends Activity {
 				// TODO Auto-generated method stub
 			}
 		});
-        
-        
-     // "ADD" button
-     		Button bsbiAddButton = (Button) findViewById(R.id.bsbiAddButton);
-     		bsbiAddButton.setOnClickListener(new OnClickListener() {
-     			public void onClick(View v) {
-     				speciesDb.closeSpeciesDatabase();
-     				Intent intent = new Intent(v.getContext(), AddingSpecies.class);
-     				startActivityForResult(intent, 0);
-     			}
-     		});
 	}
 
 	@Override
@@ -117,9 +112,21 @@ public class BsbiControl extends Activity {
 	 */
 	public void populateBsbiList ()
 	{
+		try
+		{
+			speciesDb = new SpeciesDatabase( this.getApplicationContext() );
+			speciesDb.startSpeciesDatabase();
+			
+		} catch( SQLException sqle )
+		{
+			Log.e( "SpeciesDatabase", "Could not connect to species database!" );
+		}
+		
 		for( Record rec : speciesDb.getRecordList() )
 		{
 			bsbiList.add( rec.getSpecies().getID() + ": " + rec.getSpecies().getName() );
 		}
+		
+		speciesDb.closeSpeciesDatabase();
 	}
 }

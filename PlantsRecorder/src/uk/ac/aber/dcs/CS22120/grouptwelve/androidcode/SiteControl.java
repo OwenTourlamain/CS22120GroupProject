@@ -6,10 +6,14 @@ import java.util.ArrayList;
 import uk.ac.aber.dcs.CS22120.grouptwelve.Record;
 import uk.ac.aber.dcs.CS22120.grouptwelve.SpeciesDatabase;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -21,30 +25,36 @@ public class SiteControl extends Activity {
 	ListView listView;									//used to display all the positions
 	private ArrayList<String> siteList;				//holds the data from the database 
 	private SpeciesDatabase speciesDb;
+	private Record currentRecord;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.site_select);
 		
-		try
-		{
-			speciesDb = new SpeciesDatabase( this.getApplicationContext() );
-			speciesDb.startSpeciesDatabase();
-			
-		} catch( SQLException sqle )
-		{
-			Log.e( "SpeciesDatabase", "Could not connect to species database!" );
-		}
+        speciesDb = new SpeciesDatabase( this.getBaseContext() );
 		
+		Bundle extras = getIntent().getExtras();
+		currentRecord = (Record) extras.getSerializable( "newRecord" );
+        
 		editsearch = (EditText)findViewById(R.id.siteSearch);
 		listView = (ListView)findViewById(R.id.siteView);
 		
 		siteList = new ArrayList<String>();
-		populatesiteList();
+		populateSiteList();
         
         //the simple_list_item_1 used below is a part of inbuilt xml layouts, can be changed if needed 
         listView.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, siteList));
+        listView.setOnItemClickListener( new OnItemClickListener()
+        {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+			{
+				Intent intent = new Intent( view.getContext(), AddingSpecies.class );
+				intent.putExtra( "newRecord", currentRecord );
+				startActivity( intent );
+			}
+        } );
         
         //adding the text watcher and functions it needs to perform
         editsearch.addTextChangedListener(new TextWatcher() {
@@ -83,9 +93,21 @@ public class SiteControl extends Activity {
         
 	
 }
-	public void populatesiteList ()
+	public void populateSiteList ()
 	{
+		try
+		{
+			speciesDb.startSpeciesDatabase();
+			Log.v( "SpeciesDatabase", "Started speciesdatabase" );
+			
+		} catch( SQLException sqle )
+		{
+			Log.e( "SpeciesDatabase", "Could not connect to the database!" );
+		}
+		
 		for( Record rec : speciesDb.getRecordList() )
 			siteList.add( rec.getSite().getName() );
+		
+		speciesDb.closeSpeciesDatabase();
 	}
 }

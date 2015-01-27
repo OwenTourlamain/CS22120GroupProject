@@ -7,10 +7,10 @@
         android:id="@+id/homeButton2"
         android:layout_width="75dp"
         android:layout_height="45dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@dimen/activity_horizontal_margin"
-        android:text="Home" />
+        android:layout_toStartOf="@dimen/activity_horizontal_margin"
+        android:text="@string/home_string" />
 
     <TextView
         android:id="@+id/addSpeciesMess"
@@ -19,7 +19,7 @@
         android:layout_below="@+id/homeButton2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:text="Add species encountered:"
+        android:text="@string/add_species_title"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView

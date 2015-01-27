@@ -24,6 +24,12 @@ public class Site implements Serializable
         this.description = description;
     }
 
+    public Site( String name, String description )
+    {
+    	this.name = name;
+    	this.description = description;
+    }
+    
     public int getID() { return id; }
     public String getName() { return name; }
     public String getGridReference() { return gridRef; }

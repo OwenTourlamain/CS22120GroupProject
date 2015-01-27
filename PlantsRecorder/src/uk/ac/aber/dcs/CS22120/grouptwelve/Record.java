@@ -100,18 +100,17 @@ public class Record implements Serializable
 	public void setLongitude( double longitude ) { this.longitude = longitude; }
 	public void setLatitude( double latitude ) { this.latitude = latitude; }
 	
-	public void markForDeletion() { this.shouldDelete = true; }
-	public boolean shouldDelete() { return this.shouldDelete; }
-	
+	public void setPhoneNumber( String phoneNumber ) { this.phoneNumber = phoneNumber; }
+	public String getPhoneNumber() { return this.phoneNumber; }
 	
 	private String recorder, contactNum, email;
     private Site site;
     private Species species;
     private Date time;
+    private String phoneNumber;
     private double longitude, latitude;
     private char abundance;
     private String scenePhoto, specimenPhoto; // Stored as the filename
-    private boolean shouldDelete;
 
     /**
      * physical constructor
@@ -132,8 +131,6 @@ public class Record implements Serializable
         this.abundance = abundance;
         this.scenePhoto = scenePhoto;
         this.specimenPhoto = specimenPhoto;
-        
-        this.shouldDelete = false;
     }
 
     /**
@@ -154,7 +151,10 @@ public class Record implements Serializable
         this.abundance = rec.abundance;
         this.scenePhoto = rec.scenePhoto;
         this.specimenPhoto = rec.specimenPhoto;
-        
-        this.shouldDelete = false;
+    }
+    
+    public Record()
+    {
+    	// blank record, to indicate a new record
     }
 }
