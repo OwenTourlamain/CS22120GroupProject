@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        
+        <Button
+            android:id="@+id/homeButton7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="home" />
+        
+        <TextView
+            android:id="@+id/speciesDetailsMess"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@+id/homeButton7"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="Species details:"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+        <EditText 
+            android:id="@+id/nameEdit"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/speciesDetailsMess"
+            android:layout_marginTop="15dp"
+            android:text="Name to be changed"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        <TextView
+            android:id="@+id/daforEditMess"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@+id/nameEdit"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Edit the DAFOR data:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        <Button 
+            android:id="@+id/daforScaleButtonD"
+            android:layout_width="44dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/daforEditMess"
+            android:layout_alignLeft="@+id/nameEdit"
+            android:text="D" />
+        
+        <Button 
+            android:id="@+id/daforScaleButtonA"
+            android:layout_width="44dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/daforEditMess"
+            android:layout_toRightOf="@+id/daforScaleButtonD"
+            android:text="A" />
+            
+        <Button 
+            android:id="@+id/daforScaleButtonF"
+            android:layout_width="44dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/daforEditMess"
+            android:layout_toRightOf="@+id/daforScaleButtonA"
+            android:text="F" />
+        
+       		
+        <Button 
+            android:id="@+id/daforScaleButtonO"
+            android:layout_width="44dp"
+            android:layout_height="50dp"
+           android:layout_below="@+id/daforEditMess"
+            android:layout_toRightOf="@+id/daforScaleButtonF"
+            android:text="O" />
+            
+        <Button 
+            android:id="@+id/daforScaleButtonR"
+            android:layout_width="44dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/daforEditMess"
+            android:layout_toRightOf="@+id/daforScaleButtonO"
+            android:text="R" />
+        
+        <TextView
+            android:id="@+id/commentsEditMess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/daforScaleButtonD"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Edit comments:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        <EditText 
+            android:id="@+id/commentEdit"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/commentsEditMess"
+            android:layout_marginTop="15dp"
+            android:text="Comment to be changed"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        <TextView
+            android:id="@+id/photoEditMess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/commentEdit"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Edit the photo:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        <ImageView
+            android:id="@+id/editSpecimenPhoto"
+            android:src="@drawable/plant_placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/photoEditMess" />
+        
+        <Button
+            android:id="@+id/editPhotoGallery"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/editSpecimenPhoto"
+            android:layout_alignLeft="@+id/commentEdit"
+            android:text="Gallery" />
+		
+		<Button
+            android:id="@+id/editPhotoCamera"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/editSpecimenPhoto"
+            android:layout_toRightOf="@+id/editPhotoGallery"
+            android:text="Camera" />
+        
+		<Button
+            android:id="@+id/saveChanges"
+            android:layout_width="220dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/editPhotoGallery"
+            android:layout_centerHorizontal="true"
+            android:text="Save changes" />
+		
+		
+        </RelativeLayout>
+        </ScrollView>

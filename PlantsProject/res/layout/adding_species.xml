@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/homeButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@dimen/activity_horizontal_margin"
+        android:text="home" />
+
+    <TextView
+        android:id="@+id/addSpeciesMess"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/homeButton2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Add species encountered:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/bsbiMess"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/addSpeciesMess"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="From BSBI list:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/bsbiButton"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/bsbiMess"
+        android:layout_centerHorizontal="true"
+        android:text="BSBI" />
+
+    <Button
+        android:id="@+id/addBsbiButton"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/bsbiButton"
+        android:layout_centerHorizontal="true"
+        android:text="ADD" />
+
+    <TextView
+        android:id="@+id/addNewMess"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/addBsbiButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="Add your own:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    
+    <Button
+        android:id="@+id/addNewButton"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/addNewMess"
+        android:layout_centerHorizontal="true"
+        android:text="ADD NEW" />
+
+    <Button
+        android:id="@+id/addToDataButton"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:text="Add to data" />
+
+</RelativeLayout>

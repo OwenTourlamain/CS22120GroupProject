@@ -5,8 +5,8 @@
 
     <Button
         android:id="@+id/homeButton4"
-        android:layout_width="75dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="home" />
@@ -26,7 +26,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/listOfRecordingsMess" >
+        android:layout_below="@+id/listOfRecordingsMess"
+        android:listSelector="@drawable/list_selector" >
     </ListView>
 
 </RelativeLayout>

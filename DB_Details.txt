@@ -1,8 +1,8 @@
 DB Type = MySQL
-$mysql_host = "sql3.freesqldatabase.com";
-$mysql_database = "sql365389";
-$mysql_user = "sql365389";
-$mysql_password = "rX4%aI6!";
+$servername = "mysql17.000webhost.com";
+$username = "a8519300_admin";
+$password = "group12";
+$db = "a8519300_db";
 
 Currently the tables are as follows:
 
@@ -18,8 +18,9 @@ Time             - 	TIMESTAMP      - Defaults to current time
 Longitude 		   - 	DECIMAL(15,10) - Needs to be in decimal form
 Latitude         - 	DECIMAL(15,10) - Needs to be in decimal form
 Abundance 		   - 	CHAR(1)
-SceneImg 	    	 - 	VARCHAR(1024)  - Path/URL to file
-SpecimenImg	  	 - 	VARCHAR(1024)  - Path/URL to file
+SceneImg 	    	 - 	VARCHAR(1024)  - Path/URL to file, Optional
+SpecimenImg	  	 - 	VARCHAR(1024)  - Path/URL to file, Optional
+Comment          -  TEXT           - Optional
 
 Sites:
 
@@ -32,3 +33,58 @@ Species:
 
 SpeciesID        - BIGINT          - Unsigned, Primary key, Automatic
 Name             - VARCHAR(255) 
+
+
+ANDROID DETAILS:
+
+query.php
+
+URL: cs211group12db.tk/query.php
+GET Syntax: ?table=<TABLE>&query=<QUERY> 
+                    e.g. cs211group12db.tk/query.php?table=Species&query=Name 
+                    (Gets the latin names of all species)
+            OR
+            ?table=<TABLE>&query=<QUERY>&where=<WHERE>&equals=<EQUALS> 
+                    e.g. cs211group12db.tk/query.php?table=Species&query=Name&where=SpeciesID&equals=6
+                    (Gets the species name based on the ID)
+            
+            <TABLE> - The table to search, can be Species, Records or Sites.
+            <QUERY> - The fields from the table to show, from the above list, or * for all, if in doubt, use *.
+            <WHERE> - The feild to search in.
+            <EQUALS> - What you want <WHERE> to match.
+            
+RETURNS: json formatted sql result, e.g.
+
+input: http://cs211group12db.tk/query.php?table=Sites&query=Name
+
+output: [{"Name":"Aberystwyth University (Penglais)"},{"Name":"Hyde Park"},{"Name":"Caldey Island"},{"Name":"Narberth Castle"},{"Name":"Park"}]
+  
+URL: cs211group12db.tk/addSpecies.php
+GET Syntax: ?name=<NAME>
+            
+            <NAME> - The name of the species to add.
+
+URL: cs211group12db.tk/addSite.php
+GET Syntax: ?name=<NAME>&location=<LOC>&description=<DESC>
+            
+            <NAME> - The name of the new site.
+            <LOC>  - The location of the new site.
+            <DESC> - The description of the new site.
+            
+URL: cs211group12db.tk/addRecord.php
+GET Syntax: ?recorder=<REC>&number=<CN>&email=<EMAIL>&site=<SITE>&species=<SPECIES>&time=<TIME>&lat=<LAT>&long=<LONG>&abundance=<ABUN>&img1=<SCENE>&img2=<SPECIMEN>&comment=<COM>
+            
+            <REC> - The name of the user.
+            <CN>  - Phone number of user.
+            <EMAIL> - The email of the user.
+            <SITE> - The site ID (Not the site name)
+            <SPECIES> - The species ID (Not the species name)
+            <TIME> - The time of the recording, must be in SQL timestamp format
+            <LAT> - The latitude
+            <LONG> - The longitude
+            <ABUN> - The abundance
+            <SCENE> - The name of the image file of the scene (Must be uploaded seperatley, can be nothing e.g. "img1=") 
+            <SPECIMEN> - The name of the image file of the specimen (Must be uploaded seperatley, can be nothing e.g. "img2=")
+            <COM> - The comment (can be nothing e.g. "comment=")
+            
+Any questions R.E. all of this, contact Owen.
