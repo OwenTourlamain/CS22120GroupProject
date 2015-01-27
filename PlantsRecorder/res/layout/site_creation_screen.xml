@@ -5,12 +5,11 @@
     
     <Button
             android:id="@+id/homeButton1"
-            android:layout_width="75dp"
-            android:layout_height="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:text="Home" />
+            android:text="home" />
 
         <TextView
             android:id="@+id/listOfRecordingsMess"
@@ -18,9 +17,8 @@
             android:layout_height="30dp"
             android:layout_below="@+id/homeButton1"
             android:layout_centerHorizontal="true"
-            android:gravity="center"
             android:layout_marginTop="30dp"
-            android:text="Create a New Site"
+            android:text="Create a new site:"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -28,10 +26,9 @@
             android:layout_width="220dp"
             android:layout_height="30dp"
             android:layout_alignLeft="@+id/listOfRecordingsMess"
-            android:layout_alignStart="@+id/listOfRecordingsMess"
             android:layout_below="@+id/listOfRecordingsMess"
             android:layout_marginTop="25dp"
-            android:text="Site name:"
+            android:text="site name:"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <EditText
@@ -39,31 +36,27 @@
             android:layout_width="220dp"
             android:layout_height="40dp"
             android:layout_alignLeft="@+id/siteNameMess"
-            android:layout_alignStart="@+id/siteNameMess"
             android:layout_below="@+id/siteNameMess"
-            android:ems="10"
-            android:inputType="text"/>    
+            android:ems="10" />    
 
         <TextView
             android:id="@+id/commentsMess"
             android:layout_width="220dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/siteNameEntryField"
-            android:layout_alignStart="@+id/siteNameEntryField"
             android:layout_below="@+id/siteNameEntryField"
             android:layout_marginTop="15dp"
             android:layout_centerVertical="true"
-            android:text="Comment:"
+            android:text="comments:"
             android:textAppearance="?android:attr/textAppearanceSmall" />
         
          <EditText
             android:id="@+id/commentsEntryField"
             android:layout_width="220dp"
             android:layout_height="40dp"
-            android:layout_alignStart="@+id/commentsMess"
+            android:layout_alignLeft="@+id/commentsMess"
             android:layout_below="@+id/commentsMess"
-            android:ems="10"
-            android:inputType="text" />
+            android:ems="10" />
 
          <Button
              android:id="@+id/createNewSiteButton"
@@ -72,15 +65,14 @@
              android:layout_alignParentBottom="true"
              android:layout_centerHorizontal="true"
              android:layout_marginBottom="25dp"
-             android:text="Create new site" />
+             android:text="Create" />
 
          <Button
-             android:id="@+id/use_existing_site_button"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
+             android:id="@+id/useExistingSiteButton"
+             android:layout_width="220dp"
+             android:layout_height="50dp"
              android:layout_above="@+id/createNewSiteButton"
              android:layout_alignLeft="@+id/createNewSiteButton"
-             android:layout_alignRight="@+id/createNewSiteButton"
              android:text="Use existing site" />
 
 </RelativeLayout>

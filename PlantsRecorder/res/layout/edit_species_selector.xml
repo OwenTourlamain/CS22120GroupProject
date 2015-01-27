@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/speciesSearch"
+        android:listSelector="@drawable/list_selector"
          >
     </ListView>
 

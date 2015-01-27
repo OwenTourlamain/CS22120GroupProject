@@ -46,29 +46,47 @@ public class RecordingDataSubmitScreen extends Activity {
 					speciesDb.startSpeciesDatabase();
                     speciesDb.addRecord( currentRecord );
                     speciesDb.closeSpeciesDatabase();
+                    
+                    AlertDialog.Builder submittedSuccesfullyDialog = new AlertDialog.Builder( getApplicationContext() );
+    				submittedSuccesfullyDialog.setMessage( "Succesfully Submitted!" );
+    				
+    				submittedSuccesfullyDialog.setPositiveButton( "Okay",
+    						new DialogInterface.OnClickListener() {
+    							
+    							@Override
+    							public void onClick(DialogInterface dialog, int which)
+    							{
+    								dialog.cancel();
+    								
+    								Intent intent = new Intent( getApplicationContext(), MainActivity.class );
+    								startActivity( intent );
+    								startActivityForResult(intent, 0);
+    							}
+    						});
 
 				} catch( SQLException sqle )
 				{
 					Log.e( "SpeciesDatabase", "Could not connect to species database!" );
+					
+					AlertDialog.Builder submittedUnsuccesfullyDialog = new AlertDialog.Builder( getApplicationContext() );
+    				submittedUnsuccesfullyDialog.setMessage( "Internal error, could not submit!" );
+    				
+    				submittedUnsuccesfullyDialog.setPositiveButton( "Okay",
+    						new DialogInterface.OnClickListener() {
+    							
+    							@Override
+    							public void onClick(DialogInterface dialog, int which)
+    							{
+    								dialog.cancel();
+    								
+    								Intent intent = new Intent( getApplicationContext(), MainActivity.class );
+    								startActivity( intent );
+    								startActivityForResult(intent, 0);
+    							}
+    						});
 				}
 				
-				AlertDialog.Builder submittedSuccesfullyDialog = new AlertDialog.Builder( getApplicationContext() );
-				submittedSuccesfullyDialog.setMessage( "Succesfully Submitted!" );
 				
-				submittedSuccesfullyDialog.setPositiveButton( "Okay",
-						new DialogInterface.OnClickListener() {
-							
-							@Override
-							public void onClick(DialogInterface dialog, int which)
-							{
-								dialog.cancel();
-								
-								Intent intent = new Intent( getApplicationContext(), MainActivity.class );
-								startActivity( intent );
-							}
-						});
-				
-				startActivityForResult(intent, 0);
 			}
 		});
 

@@ -16,17 +16,17 @@
             android:id="@+id/nameEntryMess"
             android:layout_width="220dp"
             android:layout_height="30dp"
-            android:layout_alignStart="@+id/enterDetailsMess"
+            android:layout_alignLeft="@+id/enterDetailsMess"
             android:layout_below="@+id/enterDetailsMess"
             android:layout_marginTop="25dp"
-            android:text="Name:"
+            android:text="name:"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <EditText
             android:id="@+id/nameEntryField"
             android:layout_width="220dp"
             android:layout_height="40dp"
-            android:layout_alignStart="@+id/nameEntryMess"
+            android:layout_alignLeft="@+id/nameEntryMess"
             android:layout_below="@+id/nameEntryMess"
             android:ems="10"
             android:inputType="textPersonName" />
@@ -35,17 +35,17 @@
             android:id="@+id/emailEntryMess"
             android:layout_width="220dp"
             android:layout_height="30dp"
-            android:layout_alignStart="@+id/nameEntryField"
+            android:layout_alignLeft="@+id/nameEntryField"
             android:layout_below="@+id/nameEntryField"
             android:layout_marginTop="15dp"
-            android:text="Email:"
+            android:text="email:"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <EditText
             android:id="@+id/emailEntryField"
             android:layout_width="220dp"
             android:layout_height="40dp"
-            android:layout_alignStart="@+id/emailEntryMess"
+            android:layout_alignLeft="@+id/emailEntryMess"
             android:layout_below="@+id/emailEntryMess"
             android:ems="10"
             android:inputType="textEmailAddress"  />
@@ -54,17 +54,17 @@
             android:id="@+id/phoneEntryMess"
             android:layout_width="220dp"
             android:layout_height="30dp"
-            android:layout_alignStart="@+id/emailEntryField"
+            android:layout_alignLeft="@+id/emailEntryField"
             android:layout_below="@+id/emailEntryField"
             android:layout_marginTop="15dp"
-            android:text="Phone:"
+            android:text="phone:"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <EditText
             android:id="@+id/phoneEntryField"
             android:layout_width="220dp"
             android:layout_height="40dp"
-            android:layout_alignStart="@+id/phoneEntryMess"
+            android:layout_alignLeft="@+id/phoneEntryMess"
             android:layout_below="@+id/phoneEntryMess"
             android:ems="10"
             android:inputType="phone" />
@@ -73,7 +73,7 @@
             android:id="@+id/previousRecButton"
             android:layout_width="220dp"
             android:layout_height="50dp"
-            android:layout_alignStart="@+id/continueButton01"
+            android:layout_alignLeft="@+id/continueButton01"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="25dp"
             android:text="Previous recordings" />
@@ -83,7 +83,7 @@
             android:layout_width="220dp"
             android:layout_height="50dp"
             android:layout_above="@+id/previousRecButton"
-            android:layout_alignStart="@+id/phoneEntryField"
+            android:layout_alignLeft="@+id/phoneEntryField"
             android:layout_marginBottom="10dp"
             android:text="Continue" />
 

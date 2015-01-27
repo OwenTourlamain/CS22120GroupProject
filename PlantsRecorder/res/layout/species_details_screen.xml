@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:fillViewport="true"
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <Button
             android:id="@+id/homeButton3"
-            android:layout_width="75dp"
-            android:layout_height="45dp"
-            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@dimen/activity_horizontal_margin"
-            android:text="home" />
+            android:layout_toStartOf="@dimen/activity_horizontal_margin"
+            android:text="@string/home_button_text" />
 
         <TextView
             android:id="@+id/speciesDetailsMess"
@@ -33,7 +33,7 @@
             android:id="@+id/nameEntryMess"
             android:layout_width="220dp"
             android:layout_height="30dp"
-            android:layout_alignLeft="@+id/speciesDetailsMess"
+            android:layout_alignStart="@+id/speciesDetailsMess"
             android:layout_below="@+id/speciesDetailsMess"
             android:layout_marginTop="25dp"
             android:text="name:"
@@ -43,7 +43,7 @@
             android:id="@+id/nameEntryField"
             android:layout_width="220dp"
             android:layout_height="40dp"
-            android:layout_alignLeft="@+id/nameEntryMess"
+            android:layout_alignStart="@+id/nameEntryMess"
             android:layout_below="@+id/nameEntryMess"
             android:ems="10" />
 
@@ -51,81 +51,92 @@
             android:id="@+id/locationMess"
             android:layout_width="220dp"
             android:layout_height="30dp"
-            android:layout_alignLeft="@+id/nameEntryField"
+            android:layout_alignStart="@+id/nameEntryField"
             android:layout_below="@+id/nameEntryField"
             android:layout_marginTop="15dp"
             android:text="get location from GPS"
             android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <Button
-            android:id="@+id/gpsButton"
+        
+        <TextView
+            android:id="@+id/latitude_text"
             android:layout_width="220dp"
-            android:layout_height="50dp"
-            android:layout_below="@+id/locationMess"
+            android:layout_height="30dp"
             android:layout_centerHorizontal="true"
-            android:text="GPS" />
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/locationMess"
+            android:text="000.000"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/longitude_text"
+            android:layout_width="220dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/latitude_text"
+            android:text="000.000"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
             android:id="@+id/daforScaleMess"
             android:layout_width="220dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/gpsButton"
+            android:layout_below="@+id/longitude_text"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:text="DAFOR scale of abundance:"
             android:textAppearance="?android:attr/textAppearanceSmall" />
-        	
-        <Button 
+
+        <Button
             android:id="@+id/daforScaleButtonD"
             android:layout_width="44dp"
             android:layout_height="50dp"
+            android:layout_alignStart="@+id/daforScaleMess"
             android:layout_below="@+id/daforScaleMess"
-            android:layout_alignLeft="@+id/daforScaleMess"
             android:text="D" />
-        
-        <Button 
+
+        <Button
             android:id="@+id/daforScaleButtonA"
             android:layout_width="44dp"
             android:layout_height="50dp"
             android:layout_below="@+id/daforScaleMess"
             android:layout_toRightOf="@+id/daforScaleButtonD"
             android:text="A" />
-            
-        <Button 
+
+        <Button
             android:id="@+id/daforScaleButtonF"
             android:layout_width="44dp"
             android:layout_height="50dp"
             android:layout_below="@+id/daforScaleMess"
             android:layout_toRightOf="@+id/daforScaleButtonA"
             android:text="F" />
-        
-       		
-        <Button 
+
+        <Button
             android:id="@+id/daforScaleButtonO"
             android:layout_width="44dp"
             android:layout_height="50dp"
             android:layout_below="@+id/daforScaleMess"
             android:layout_toRightOf="@+id/daforScaleButtonF"
             android:text="O" />
-            
-        <Button 
+
+        <Button
             android:id="@+id/daforScaleButtonR"
             android:layout_width="44dp"
             android:layout_height="50dp"
             android:layout_below="@+id/daforScaleMess"
             android:layout_toRightOf="@+id/daforScaleButtonO"
             android:text="R" />
-        
+
         <TextView
-       	    android:id="@+id/commentsMess"
-       	    android:layout_width="220dp"
-       	    android:layout_height="30dp"
-       	    android:layout_centerHorizontal="true"
-       	    android:layout_marginTop="15dp"
-       	    android:layout_below="@+id/daforScaleButtonD"
-       	    android:text="Comments:"
-       	    android:textAppearance="?android:attr/textAppearanceSmall" />
-        
+            android:id="@+id/commentsMess"
+            android:layout_width="220dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/daforScaleButtonD"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="Comments:"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
         <EditText
             android:id="@+id/commentsEntryField"
             android:layout_width="220dp"
@@ -133,75 +144,76 @@
             android:layout_below="@+id/commentsMess"
             android:layout_centerHorizontal="true"
             android:ems="10" />
-       
-       <TextView
+
+        <TextView
             android:id="@+id/photoMess"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:layout_below="@+id/commentsEntryField"
-            android:layout_centerHorizontal="true"     
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
             android:text="Take a photograph of the specimen"
             android:textAppearance="?android:attr/textAppearanceSmall" />
-       
-       	<Button 
-       	    android:id="@+id/photoButton"
+
+        <Button
+            android:id="@+id/photoButton"
             android:layout_width="220dp"
             android:layout_height="50dp"
             android:layout_below="@+id/photoMess"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
-			android:layout_centerHorizontal="true"     
-			android:text="Camera"       
-            android:ems="10" />
-       		
-       	<TextView
+            android:ems="10"
+            android:text="Camera" />
+
+        <TextView
             android:id="@+id/galleryMess"
             android:layout_width="220dp"
             android:layout_height="30dp"
             android:layout_below="@+id/photoButton"
-            android:layout_centerHorizontal="true"     
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:text="Choose from gallery"
             android:textAppearance="?android:attr/textAppearanceSmall" />
-       	
-       	<Button 
-       	    android:id="@+id/galleryButton"
+
+        <Button
+            android:id="@+id/galleryButton"
             android:layout_width="220dp"
             android:layout_height="50dp"
             android:layout_below="@+id/galleryMess"
-			android:layout_centerHorizontal="true"     
-			android:text="Gallery"       
-            android:ems="10" />
-       	
-       	<TextView
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:text="Gallery" />
+
+        <TextView
             android:id="@+id/sitePhotoMess"
             android:layout_width="220dp"
             android:layout_height="30dp"
             android:layout_below="@+id/galleryButton"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:text="Take a photograph of the site"
-            android:layout_centerHorizontal="true"
             android:textAppearance="?android:attr/textAppearanceSmall" />
-            
-       	<Button 
-       	    android:id="@+id/sitePhotoButton"
+
+        <Button
+            android:id="@+id/sitePhotoButton"
             android:layout_width="220dp"
             android:layout_height="50dp"
             android:layout_below="@+id/sitePhotoMess"
-			android:layout_centerHorizontal="true"     
-			android:text="Camera"       
-            android:ems="10" />
-       	
-       	<Button 
-       	    android:id="@+id/addSpecieButton"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:text="Camera" />
+
+        <Button
+            android:id="@+id/addSpecieButton"
             android:layout_width="220dp"
             android:layout_height="50dp"
             android:layout_below="@+id/sitePhotoButton"
-			android:layout_centerHorizontal="true"     
-			android:text="Add specie"       
-            android:ems="10" />
-       	
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:text="Add specie" />
+
+ 
     </RelativeLayout>
 
 </ScrollView>

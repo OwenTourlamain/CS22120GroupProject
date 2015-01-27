@@ -8,9 +8,9 @@
         android:id="@+id/bsbi_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:ems="10" 
         android:textColor="#0099FF"/>
 
@@ -18,9 +18,18 @@
         android:id="@+id/bsbi_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/bsbi_search"
+        android:listSelector="@drawable/list_selector"
          >
     </ListView>
+
+    <Button
+        android:id="@+id/bsbiAddButton"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/bsbi_view"
+        android:layout_centerHorizontal="true"
+        android:text="ADD" />
 
 </RelativeLayout>

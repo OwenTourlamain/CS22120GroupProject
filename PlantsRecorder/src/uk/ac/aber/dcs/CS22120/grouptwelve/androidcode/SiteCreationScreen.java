@@ -31,45 +31,26 @@ public class SiteCreationScreen extends Activity
 		final EditText siteComments = (EditText) findViewById( R.id.commentsEntryField );
 		
 		// "Create" button
-		Button createButton = (Button) findViewById(R.id.createNewSiteButton);
+		Button createButton = (Button) findViewById( R.id.createNewSiteButton );
 		createButton.setOnClickListener(new OnClickListener()
 		{
-			public void onClick(View v) {
+			public void onClick(View v)
+			{
+				currentRecord.setSite(
+						new Site
+						(
+							siteNameEntry.getText().toString(),
+							siteComments.getText().toString()
+							
+						) );
 				
-				Log.v( "Validity", "Text is " + validText( siteNameEntry.getText().toString() ) );
-				
-				if( validText( siteNameEntry.getText().toString() ) && validText( siteComments.getText().toString() ) )
-				{
-					currentRecord.setSite(
-							new Site
-							(
-								siteNameEntry.getText().toString(),
-								siteComments.getText().toString()
-							) );
-					
-					Intent intent = new Intent(v.getContext(), AddingSpecies.class);
-					intent.putExtra( "newRecord", currentRecord );
-					startActivity( intent );
-				
-				} else
-				{
-					if( validText( siteNameEntry.getText().toString() ) )
-					{
-						siteNameEntry.setError( "Invalid text" );
-						Log.v( "InputStuff", "invalid text" );
-					}
-						
-					
-					if( validText( siteComments.getText().toString() ) )
-					{
-						siteComments.setError( "Invalid text" );
-						Log.v( "InputStuff", "invalid text" );
-					}
-				}
+				Intent intent = new Intent(v.getContext(), AddingSpecies.class);
+				intent.putExtra( "newRecord", currentRecord );
+				startActivity( intent );
 			}
 		});
 		
-		Button useExistingSiteButton = (Button) findViewById( R.id.use_existing_site_button );
+		Button useExistingSiteButton = (Button) findViewById( R.id.useExistingSiteButton );
 		useExistingSiteButton.setOnClickListener( new OnClickListener()
 		{
 			public void onClick( View v )
@@ -88,12 +69,5 @@ public class SiteCreationScreen extends Activity
 				startActivity(intent);
 			}
 		});
-	}
-	
-	private boolean validText( String s )
-	{
-		if( s.length() == 0 ) return false;
-		
-		return s.matches( "^[a-zA-Z]+(?:\\s[a-zA-Z]+)*$" );
 	}
 }

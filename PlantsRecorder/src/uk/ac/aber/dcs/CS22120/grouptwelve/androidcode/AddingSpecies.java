@@ -38,6 +38,7 @@ public class AddingSpecies extends Activity {
 		addNewButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(v.getContext(), SpeciesDetailsScreen.class);
+				intent.putExtra( "newRecord", currentRecord );
 				startActivityForResult(intent, 0);
 			}
 		});
