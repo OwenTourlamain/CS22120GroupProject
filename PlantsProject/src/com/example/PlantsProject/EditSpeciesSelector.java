@@ -30,7 +30,7 @@ public class EditSpeciesSelector extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.edit_species_selector);
-		getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F4F4F4"));
+		//getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F4F4F4"));
 		
 		editsearch = (EditText)findViewById(R.id.speciesSearch);
 		listView = (ListView)findViewById(R.id.speciesView);

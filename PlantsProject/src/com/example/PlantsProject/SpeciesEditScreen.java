@@ -18,7 +18,7 @@ public class SpeciesEditScreen extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.species_editing_screen);
-		getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F4F4F4"));
+		//getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F4F4F4"));
 		
 		/*
 		 * BUTTONS
