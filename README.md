@@ -4,8 +4,8 @@ Ability to add/edit/remove entries is not yet implemented, although the infrastr
 
 ##### Quality Control
 - Fully comment code, according to commenting standards
-- Add boilerplate aber uni stuff to each page
-- 
+- Add boilerplate aber uni stuff to each page#
+
 ##### GUI
 - Link camera and GPS functionality to input screen
 - Perform validation on input
