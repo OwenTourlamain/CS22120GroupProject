@@ -12,11 +12,11 @@ import android.util.Log;
 class DatabaseHelper extends SQLiteOpenHelper 
 {
     private static final String DATABASE_NAME = "plants.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String CREATE_RECORDS_TABLE =
             "CREATE TABLE RECORDS ("
-            +"RecordID       BIGINT PRIMARY KEY,"
+            + "RecordID      BIGINT PRIMARY KEY,"
             + "Recorder      VARCHAR(255),"
             + "ContactNumber VARCHAR(255),"
             + "Email         VARCHAR(255),"
@@ -43,11 +43,6 @@ class DatabaseHelper extends SQLiteOpenHelper
     		+ "SpeciesID BIGINT UNSIGNED PRIMARY KEY,"
     		+ "Name      VARCHAR(255)"
     		+ ");";
-    		
-    private static final String DATABASE_CREATE =
-             CREATE_SPECIES_TABLE
-            +CREATE_SITES_TABLE
-            +CREATE_RECORDS_TABLE;
 
     public DatabaseHelper( Context context )
     {
@@ -57,7 +52,9 @@ class DatabaseHelper extends SQLiteOpenHelper
     @Override
     public void onCreate( SQLiteDatabase db )
     {
-        db.execSQL(DATABASE_CREATE);
+        db.execSQL(CREATE_SPECIES_TABLE);
+        db.execSQL(CREATE_SITES_TABLE);
+        db.execSQL(CREATE_RECORDS_TABLE);
     }
 
     @Override
@@ -67,7 +64,7 @@ class DatabaseHelper extends SQLiteOpenHelper
                 "Upgrading database from version " + oldVersion + " to "
                         + newVersion + "which will destroy all old data");
 
-        db.execSQL( "DROP TABLE IF EXISTS plants" );
+        db.execSQL("DROP TABLE IF EXISTS plants");
         db.execSQL("DROP TABLE IF EXISTS sites");
         db.execSQL("DROP TABLE IF EXISTS records");
     }

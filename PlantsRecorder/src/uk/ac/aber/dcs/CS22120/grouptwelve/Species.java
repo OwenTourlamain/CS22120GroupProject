@@ -1,10 +1,18 @@
 package uk.ac.aber.dcs.CS22120.grouptwelve;
 
+import java.io.Serializable;
+
 /**
  * Simple object class to represent a species
  */
-public class Species {
+public class Species implements Serializable
+{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1684544462612416203L;
+	
 	private int id;
 	private String name;
 	private String comment;

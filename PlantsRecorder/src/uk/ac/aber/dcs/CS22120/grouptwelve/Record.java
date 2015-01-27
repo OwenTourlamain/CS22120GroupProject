@@ -1,13 +1,19 @@
 package uk.ac.aber.dcs.CS22120.grouptwelve;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Simple record structure
  */
-public class Record
+public class Record implements Serializable
 {
-    private int id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7565158491163087607L;
+	
+	private int id;
     public int getId() {
 		return id;
 	}
@@ -94,6 +100,10 @@ public class Record
 	public void setLongitude( double longitude ) { this.longitude = longitude; }
 	public void setLatitude( double latitude ) { this.latitude = latitude; }
 	
+	public void markForDeletion() { this.shouldDelete = true; }
+	public boolean shouldDelete() { return this.shouldDelete; }
+	
+	
 	private String recorder, contactNum, email;
     private Site site;
     private Species species;
@@ -101,6 +111,7 @@ public class Record
     private double longitude, latitude;
     private char abundance;
     private String scenePhoto, specimenPhoto; // Stored as the filename
+    private boolean shouldDelete;
 
     /**
      * physical constructor
@@ -121,6 +132,8 @@ public class Record
         this.abundance = abundance;
         this.scenePhoto = scenePhoto;
         this.specimenPhoto = specimenPhoto;
+        
+        this.shouldDelete = false;
     }
 
     /**
@@ -141,5 +154,7 @@ public class Record
         this.abundance = rec.abundance;
         this.scenePhoto = rec.scenePhoto;
         this.specimenPhoto = rec.specimenPhoto;
+        
+        this.shouldDelete = false;
     }
 }
