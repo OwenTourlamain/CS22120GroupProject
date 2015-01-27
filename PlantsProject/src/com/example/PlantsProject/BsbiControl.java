@@ -36,7 +36,7 @@ public class BsbiControl extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bsbi_control_view);
-		getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F4F4F4"));
+		//getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F4F4F4"));
 		
 		editsearch = (EditText)findViewById(R.id.bsbi_search);
 		listView = (ListView)findViewById(R.id.bsbi_view);

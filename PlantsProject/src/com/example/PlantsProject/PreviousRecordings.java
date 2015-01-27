@@ -30,7 +30,7 @@ public class PreviousRecordings extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.previous_recordings);
-		getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F4F4F4"));
+		//getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F4F4F4"));
 		
 		listView = (ListView)findViewById(R.id.recordView);
 		

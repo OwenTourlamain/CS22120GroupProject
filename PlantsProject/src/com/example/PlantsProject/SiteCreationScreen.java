@@ -17,7 +17,7 @@ public class SiteCreationScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.site_creation_screen);
-		getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F4F4F4"));
+		//getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F4F4F4"));
 		
 		/**
 		 * Adding functionality to buttons 

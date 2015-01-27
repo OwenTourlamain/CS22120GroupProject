@@ -22,7 +22,7 @@ public class AddingSpecies extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.adding_species);
-		getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F4F4F4"));
+		//getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F4F4F4"));
 		// "AddNew" button
 		Button addNewButton = (Button) findViewById(R.id.addNewButton);
 		addNewButton.setOnClickListener(new OnClickListener() {

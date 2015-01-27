@@ -18,7 +18,7 @@ public class RecordingData extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.recording_data);
 		ImageView image = (ImageView) findViewById(R.id.sitePhoto);
-		getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F4F4F4"));
+		//getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F4F4F4"));
 		
 		/*
 		 * BUTTONS
