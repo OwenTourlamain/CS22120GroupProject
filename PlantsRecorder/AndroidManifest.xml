@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="uk.ac.aber.dcs.CS22120.grouptwelve.androidcode"
+    package="uk.ac.aber.dcs.CS221.group12"
     
     android:versionCode="1"
     android:versionName="1.0" >
@@ -14,15 +14,13 @@
     <uses-sdk
         android:minSdkVersion="17"
         android:targetSdkVersion="21" />
-    <instrumentation android:name="android.test.InstrumentationTestRunner" android:targetPackage="uk.ac.aber.dcs.CS22120.grouptwelve.androidcode"></instrumentation>
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
                 <activity
-            android:name="uk.ac.aber.dcs.CS22120.grouptwelve.androidcode.MainActivity">
+            android:name="uk.ac.aber.dcs.CS221.group12.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,40 +29,40 @@
         </activity>
         
         <!-- ADDING ALL THE ACTIVITIES -->
-        <activity android:name=".DetailsEntryScreen" >
+        <activity android:name="uk.ac.aber.dcs.CS221.group12.DetailsEntryScreen" >
         </activity>
         
-        <activity android:name=".PreviousRecordings" >
+        <activity android:name="uk.ac.aber.dcs.CS221.group12.PreviousRecordings" >
         </activity>
         
-        <activity android:name=".SiteCreationScreen" >
+        <activity android:name="uk.ac.aber.dcs.CS221.group12.SiteCreationScreen" >
         </activity>
         
-        <activity android:name=".SpeciesDetailsScreen" >
+        <activity android:name="uk.ac.aber.dcs.CS221.group12.SpeciesDetailsScreen" >
         </activity>
         
-        <activity android:name=".BsbiControl" >
+        <activity android:name="uk.ac.aber.dcs.CS221.group12.BsbiControl" >
         </activity>
         
-        <activity android:name=".SiteControl" >
+        <activity android:name="uk.ac.aber.dcs.CS221.group12.SiteControl" >
         </activity>
         
-        <activity android:name=".DaforScale" >
+        <activity android:name="uk.ac.aber.dcs.CS221.group12.DaforScale" >
         </activity>
         
-        <activity android:name=".AddingSpecies" >
+        <activity android:name="uk.ac.aber.dcs.CS221.group12.AddingSpecies" >
         </activity>
         
-         <activity android:name=".EditSpeciesSelector" >
+         <activity android:name="uk.ac.aber.dcs.CS221.group12.EditSpeciesSelector" >
         </activity>
         
-         <activity android:name=".SpeciesSelect" >
+         <activity android:name="uk.ac.aber.dcs.CS221.group12.SpeciesSelect" >
         </activity>
         
-         <activity android:name=".SpecimenEditScreen" >
+         <activity android:name="uk.ac.aber.dcs.CS221.group12.SpecimenEditScreen" >
         </activity>
         
-         <activity android:name=".EditingData" >
+         <activity android:name="uk.ac.aber.dcs.CS221.group12.EditingData" >
         </activity>
     </application>
 </manifest>

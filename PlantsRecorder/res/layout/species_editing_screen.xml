@@ -122,7 +122,6 @@
         
         <ImageView
             android:id="@+id/editSpecimenPhoto"
-            android:src="@drawable/plant_placeholder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/photoEditMess" />
