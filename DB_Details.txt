@@ -45,13 +45,19 @@ GET Syntax: ?table=<TABLE>&query=<QUERY>
                     (Gets the latin names of all species)
             OR
             ?table=<TABLE>&query=<QUERY>&where=<WHERE>&equals=<EQUALS> 
-                    e.g. cs211group12db.tk/query.php?table=Species&query=Name&where=SpeciesID&equals=$ID
+                    e.g. cs211group12db.tk/query.php?table=Species&query=Name&where=SpeciesID&equals=6
                     (Gets the species name based on the ID)
             
             <TABLE> - The table to search, can be Species, Records or Sites.
             <QUERY> - The fields from the table to show, from the above list, or * for all, if in doubt, use *.
             <WHERE> - The feild to search in.
             <EQUALS> - What you want <WHERE> to match.
+            
+RETURNS: json formatted sql result, e.g.
+
+input: http://cs211group12db.tk/query.php?table=Sites&query=Name
+
+output: [{"Name":"Aberystwyth University (Penglais)"},{"Name":"Hyde Park"},{"Name":"Caldey Island"},{"Name":"Narberth Castle"},{"Name":"Park"}]
   
 URL: cs211group12db.tk/addSpecies.php
 GET Syntax: ?name=<NAME>
