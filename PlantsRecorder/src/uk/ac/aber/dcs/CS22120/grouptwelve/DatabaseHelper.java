@@ -1,3 +1,11 @@
+/*
+* @(#) DatabaseHelper.java 1.1 2015-01-27
+*
+* Copyright (c) 2015 Aberystwyth University.
+* All rights reserved.
+*
+*/ 
+
 package uk.ac.aber.dcs.CS22120.grouptwelve;
 
 import android.content.Context;
@@ -5,10 +13,17 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-/**
- * Helper class that constructs the database
- *
- */
+ /**
+* DatabaseHelper - Helper class that constructs the database
+* <p>
+* How it is used
+*
+* @author (name)
+* @since 1.0
+* @version 1.X (put status of version here)
+* @see (ref to related classes)
+*/ 
+
 class DatabaseHelper extends SQLiteOpenHelper 
 {
     private static final String DATABASE_NAME = "plants.db";
