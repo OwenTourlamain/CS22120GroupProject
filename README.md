@@ -1,13 +1,13 @@
-### to-do list
+#TODO-LIST
+- ##### GUI
+ - Link camera and GPS functionality to input screen
+ - Perform validation on input
 
-~~database~~
-
-internal database - 50% done
-
-Graphical interface - Part done, now usable
-
-GPS
-
-Camera
-
-Online connectivity
+- ##### Functionality
+  - Add automatic date/timestamp to record
+  - Create class for connecting to database
+    - Pushing new items upstream
+    - Pull new items from upstream
+    - Deleting records on server
+    - Deleting records on app
+ - General code cleanup
