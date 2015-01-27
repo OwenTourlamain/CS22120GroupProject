@@ -1,11 +1,12 @@
+/*
+* @(#) UploadRecords.java 1.1 2015-01-27
+*
+* Copyright (c) 2015 Aberystwyth University.
+* All rights reserved.
+*
+*/ 
+
 package uk.ac.aber.dcs.CS22120.grouptwelve;
-
-/**
- * this is the class responsible for checking and uploading to the server
- * when an Internet connection is available
- */
-
-
 
 /**
 * UploadRecords - A class that uploads data to the server.
