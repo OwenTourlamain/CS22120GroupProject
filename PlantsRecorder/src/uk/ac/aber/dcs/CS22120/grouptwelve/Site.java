@@ -1,20 +1,34 @@
+/*
+* @(#) SomeClass.java 1.1 2015-01-27
+*
+* Copyright (c) 2015 Aberystwyth University.
+* All rights reserved.
+*
+*/ 
+
 package uk.ac.aber.dcs.CS22120.grouptwelve;
 
 import java.io.Serializable;
 
 /**
- * simple container object for a site record
- */
+* Site - A class that contains a simple container object for a record.
+* <p>
+* How it is used
+*
+* @author (name)
+* @since 1.0
+* @version 1.X (put status of version here)
+* @see (ref to related classes)
+*/ 
+
 public class Site implements Serializable
 {
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = 7399586458373747320L;
 	private int id;
-    private String name;
-    private String gridRef;
-    private String description;
+	private String name;
+	private String gridRef;
+	private String description;
 
     public Site( int id, String name, String gridRef, String description )
     {
