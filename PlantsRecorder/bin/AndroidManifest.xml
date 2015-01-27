@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="17"
         android:targetSdkVersion="21" />
     <instrumentation android:name="android.test.InstrumentationTestRunner" android:targetPackage="uk.ac.aber.dcs.CS22120.grouptwelve.androidcode"></instrumentation>
 

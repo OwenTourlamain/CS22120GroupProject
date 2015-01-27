@@ -1,5 +1,6 @@
 package uk.ac.aber.dcs.CS22120.grouptwelve.androidcode;
 
+import uk.ac.aber.dcs.CS22120.grouptwelve.Record;
 import uk.ac.aber.dcs.CS22120.grouptwelve.Site;
 import android.app.Activity;
 import android.content.Intent;
@@ -12,15 +13,16 @@ import android.widget.EditText;
 
 public class SiteCreationScreen extends Activity
 {
-	private Site newSite;
+	private Record currentRecord;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.site_creation_screen);
 		
-		newSite = null;
-
+		Bundle extras = getIntent().getExtras();
+		currentRecord = (Record) extras.getSerializable( "newRecord" );
+		
 		/**
 		 * Adding functionality to buttons 
 		 */
@@ -33,10 +35,20 @@ public class SiteCreationScreen extends Activity
 		createButton.setOnClickListener(new OnClickListener()
 		{
 			public void onClick(View v) {
+				
+				Log.v( "Validity", "Text is " + validText( siteNameEntry.getText().toString() ) );
+				
 				if( validText( siteNameEntry.getText().toString() ) && validText( siteComments.getText().toString() ) )
 				{
+					currentRecord.setSite(
+							new Site
+							(
+								siteNameEntry.getText().toString(),
+								siteComments.getText().toString()
+							) );
+					
 					Intent intent = new Intent(v.getContext(), AddingSpecies.class);
-					intent.putExtra( "newSite", newSite );
+					intent.putExtra( "newRecord", currentRecord );
 					startActivity( intent );
 				
 				} else
@@ -63,7 +75,8 @@ public class SiteCreationScreen extends Activity
 			public void onClick( View v )
 			{
 				Intent intent = new Intent( v.getContext(), SiteControl.class );
-				startActivityForResult( intent, 0 );
+				intent.putExtra( "newRecord", currentRecord );
+				startActivity( intent );
 			}
 		} );
 		
@@ -75,12 +88,6 @@ public class SiteCreationScreen extends Activity
 				startActivity(intent);
 			}
 		});
-	}
-	
-	@Override
-	public void onActivityResult( int requestCode, int resultCode, Intent data )
-	{
-		newSite = (Site) data.getSerializableExtra( "newSite" );
 	}
 	
 	private boolean validText( String s )

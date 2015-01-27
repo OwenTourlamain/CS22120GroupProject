@@ -12,7 +12,7 @@ import android.util.Log;
 class DatabaseHelper extends SQLiteOpenHelper 
 {
     private static final String DATABASE_NAME = "plants.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
 
     private static final String CREATE_RECORDS_TABLE =
             "CREATE TABLE RECORDS ("
@@ -28,7 +28,7 @@ class DatabaseHelper extends SQLiteOpenHelper
             + "Abundance     CHAR(1),"
             + "SceneImg      VARCHAR(1024),"
             + "SpecimenImg   VARCHAR(1024)"
-            + ");";
+            + ")";
 
     private static final String CREATE_SITES_TABLE =
             "CREATE TABLE SITES ("
@@ -36,13 +36,13 @@ class DatabaseHelper extends SQLiteOpenHelper
             + "Name        VARCHAR(255),"
             + "Location    VARCHAR(8),"
             + "Description TEXT"
-            + ");";
+            + ")";
 
     private static final String CREATE_SPECIES_TABLE =
     		"CREATE TABLE SPECIES ("
     		+ "SpeciesID BIGINT UNSIGNED PRIMARY KEY,"
     		+ "Name      VARCHAR(255)"
-    		+ ");";
+    		+ ")";
 
     public DatabaseHelper( Context context )
     {
@@ -55,6 +55,8 @@ class DatabaseHelper extends SQLiteOpenHelper
         db.execSQL(CREATE_SPECIES_TABLE);
         db.execSQL(CREATE_SITES_TABLE);
         db.execSQL(CREATE_RECORDS_TABLE);
+        
+        Log.v( "SpeciesDatabase", "Tables created" );
     }
 
     @Override
@@ -64,8 +66,8 @@ class DatabaseHelper extends SQLiteOpenHelper
                 "Upgrading database from version " + oldVersion + " to "
                         + newVersion + "which will destroy all old data");
 
-        db.execSQL("DROP TABLE IF EXISTS plants");
-        db.execSQL("DROP TABLE IF EXISTS sites");
-        db.execSQL("DROP TABLE IF EXISTS records");
+        db.execSQL("DROP TABLE IF EXISTS RECORDS");
+        db.execSQL("DROP TABLE IF EXISTS SITES");
+        db.execSQL("DROP TABLE IF EXISTS SPECIES");
     }
 }

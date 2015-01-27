@@ -60,7 +60,6 @@
             android:id="@+id/commentsEntryField"
             android:layout_width="220dp"
             android:layout_height="40dp"
-            android:layout_alignLeft="@+id/commentsMess"
             android:layout_alignStart="@+id/commentsMess"
             android:layout_below="@+id/commentsMess"
             android:ems="10"
@@ -80,10 +79,8 @@
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_above="@+id/createNewSiteButton"
-             android:layout_alignEnd="@+id/createButton"
              android:layout_alignLeft="@+id/createNewSiteButton"
              android:layout_alignRight="@+id/createNewSiteButton"
-             android:layout_alignStart="@+id/createButton"
              android:text="Use existing site" />
 
 </RelativeLayout>

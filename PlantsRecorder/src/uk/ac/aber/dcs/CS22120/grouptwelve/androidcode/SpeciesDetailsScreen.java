@@ -1,34 +1,24 @@
 package uk.ac.aber.dcs.CS22120.grouptwelve.androidcode;
 
-import java.sql.SQLException;
-
-import uk.ac.aber.dcs.CS22120.grouptwelve.SpeciesDatabase;
+import uk.ac.aber.dcs.CS22120.grouptwelve.Record;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class SpeciesDetailsScreen extends Activity {
 
-	private SpeciesDatabase speciesDb;
+	private Record currentRecord;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.species_details_screen);
 
-		try
-		{
-			speciesDb = new SpeciesDatabase( this.getApplicationContext() );
-			speciesDb.startSpeciesDatabase();
-		
-		} catch( SQLException sqle )
-		{
-			Log.e( "SpeciesDatabase", "Could not open species database!" );
-		}
+		Bundle extras = getIntent().getExtras();
+		currentRecord = (Record) extras.getSerializable( "newRecord" );
 		
 		/**
 		 * Adding functionality to buttons
@@ -37,7 +27,6 @@ public class SpeciesDetailsScreen extends Activity {
 		Button homeButton2 = (Button) findViewById(R.id.homeButton3);
 		homeButton2.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				speciesDb.closeSpeciesDatabase();
 				Intent intent = new Intent(v.getContext(), MainActivity.class);
 				startActivityForResult(intent, 0);
 			}
@@ -47,8 +36,7 @@ public class SpeciesDetailsScreen extends Activity {
 		Button addSpecieButton = (Button) findViewById(R.id.addSpecieButton);
 		addSpecieButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				speciesDb.closeSpeciesDatabase();
-				Intent intent = new Intent(v.getContext(), AddingSpecies.class);
+				Intent intent = new Intent(v.getContext(), RecordingDataSubmitScreen.class);
 				startActivityForResult(intent, 0);
 			}
 		});
@@ -65,7 +53,6 @@ public class SpeciesDetailsScreen extends Activity {
 		Button daforButtonD = (Button) findViewById(R.id.daforScaleButtonD);
 		daforButtonD.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				speciesDb.closeSpeciesDatabase();
 				Intent intent = new Intent(v.getContext(), BsbiControl.class);
 				startActivityForResult(intent, 0);
 			}

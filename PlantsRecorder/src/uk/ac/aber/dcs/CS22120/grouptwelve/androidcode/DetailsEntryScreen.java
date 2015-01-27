@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class DetailsEntryScreen extends Activity
 {
@@ -23,6 +24,11 @@ public class DetailsEntryScreen extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.details_entry_screen);
 		
+		newRecord = new Record();
+		
+		final EditText nameTextField = (EditText) findViewById( R.id.nameEntryField );
+		final EditText emailEntryField = (EditText) findViewById( R.id.emailEntryField );
+		final EditText phoneEntryField = (EditText) findViewById( R.id.phoneEntryField );
 		/**
 		 * Adding functionality to buttons 
 		 */
@@ -31,8 +37,13 @@ public class DetailsEntryScreen extends Activity
 		Button continueButton = (Button) findViewById(R.id.continueButton01);
 		continueButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
+				
+				newRecord.setRecorder( nameTextField.getText().toString() );
+				newRecord.setEmail( emailEntryField.getText().toString() );
+				newRecord.setPhoneNumber( phoneEntryField.getText().toString() );
+				
 				Intent intent = new Intent(v.getContext(), SiteCreationScreen.class);
-				intent.putExtra( "CurrentRecord", newRecord );
+				intent.putExtra( "newRecord", newRecord );
 				startActivity(intent);
 			}
 		});
@@ -56,7 +67,7 @@ public class DetailsEntryScreen extends Activity
 	
 		else
 		{
-			newRecord = (Record) data.getSerializableExtra( "CurrentRecord" );
+//			newRecord = (Record) data.getSerializableExtra( "CurrentRecord" );
 		}
 	}
 }
