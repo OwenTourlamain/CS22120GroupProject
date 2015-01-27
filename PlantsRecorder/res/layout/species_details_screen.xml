@@ -65,7 +65,6 @@
             android:layout_marginTop="15dp"
             android:layout_below="@+id/locationMess"
             android:text="000.000"
-            android:layout_centerHorizontal="true"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView

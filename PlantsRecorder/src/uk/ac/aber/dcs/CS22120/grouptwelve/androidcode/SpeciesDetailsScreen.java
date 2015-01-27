@@ -17,13 +17,23 @@ import java.util.Date;
 import uk.ac.aber.dcs.CS22120.grouptwelve.Record;
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 
 
 /**
@@ -36,7 +46,7 @@ import android.widget.TextView;
 * @version 1.X (put status of version here)
 * @see (ref to related classes)
 */ 
-public class SpeciesDetailsScreen extends Activity {
+public class SpeciesDetailsScreen extends Activity implements ConnectionCallbacks, OnConnectionFailedListener {
 
 	private Record currentRecord;
 	private Button mPhotoButton;
@@ -46,6 +56,11 @@ public class SpeciesDetailsScreen extends Activity {
 	protected static final String TAG = "basic-location-sample";
 	protected TextView mLatitudeText;
 	protected TextView mLongitudeText;
+	private final Button daforButtonD = (Button) findViewById(R.id.daforScaleButtonD);
+	final Button daforButtonA = (Button) findViewById(R.id.daforScaleButtonA);
+	final Button daforButtonF = (Button) findViewById(R.id.daforScaleButtonF);
+	final Button daforButtonO = (Button) findViewById(R.id.daforScaleButtonO);
+	final Button daforButtonR = (Button) findViewById(R.id.daforScaleButtonR);
 	
 	String mCurrentPhotoPath;
 	
@@ -76,12 +91,20 @@ public class SpeciesDetailsScreen extends Activity {
 		mLongitudeText = (TextView) findViewById((R.id.longitude_text));
 		buildGoogleApiClient();
 		
+		daforButtonD.setSelected( true ); // set a default
+		
+		mPhotoButton = (Button)findViewById(R.id.photoButton);
+		
+		mPhotoButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				TakePicture();
+			}
+		});
+		
 		Bundle extras = getIntent().getExtras();
 		currentRecord = (Record) extras.getSerializable( "newRecord" );
 	
-		EditText nameEntryField = (EditText) findViewById( R.id.nameEntryField );
-		EditText commentEntryField = (EditText) findViewById( R.id.commentsEntryField );
-		
+		final EditText nameEntryField = (EditText) findViewById( R.id.nameEntryField );
 		
 		/**
 		 * Adding functionality to buttons
@@ -100,6 +123,9 @@ public class SpeciesDetailsScreen extends Activity {
 		addSpecieButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(v.getContext(), RecordingDataSubmitScreen.class);
+				
+				currentRecord.setRecorder( nameEntryField.getText().toString() );
+				
 				intent.putExtra( "newRecord", currentRecord );
 				startActivityForResult(intent, 0);
 			}
@@ -114,12 +140,7 @@ public class SpeciesDetailsScreen extends Activity {
 		 */
 		
 		// "DAFOR D" button
-		final Button daforButtonD = (Button) findViewById(R.id.daforScaleButtonD);
-		final Button daforButtonA = (Button) findViewById(R.id.daforScaleButtonA);
-		final Button daforButtonF = (Button) findViewById(R.id.daforScaleButtonF);
-		final Button daforButtonO = (Button) findViewById(R.id.daforScaleButtonO);
-		final Button daforButtonR = (Button) findViewById(R.id.daforScaleButtonR);
-		
+				
 		daforButtonD.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				daforButtonD.setSelected( true );
@@ -127,6 +148,8 @@ public class SpeciesDetailsScreen extends Activity {
 				daforButtonF.setSelected( false );
 				daforButtonO.setSelected( false );
 				daforButtonR.setSelected( false );
+				
+				currentRecord.setAbundance( 'D' );
 			}
 		});
 		
@@ -137,6 +160,8 @@ public class SpeciesDetailsScreen extends Activity {
 				daforButtonF.setSelected( false );
 				daforButtonO.setSelected( false );
 				daforButtonR.setSelected( false );
+				
+				currentRecord.setAbundance( 'A' );
 			}
 		});
 		
@@ -147,6 +172,8 @@ public class SpeciesDetailsScreen extends Activity {
 				daforButtonF.setSelected( true );
 				daforButtonO.setSelected( false );
 				daforButtonR.setSelected( false );
+				
+				currentRecord.setAbundance( 'F' );
 			}
 		});
 		
@@ -157,6 +184,8 @@ public class SpeciesDetailsScreen extends Activity {
 				daforButtonF.setSelected( false );
 				daforButtonO.setSelected( true );
 				daforButtonR.setSelected( false );
+				
+				currentRecord.setAbundance( 'O' );
 			}
 		});
 		
@@ -167,6 +196,8 @@ public class SpeciesDetailsScreen extends Activity {
 				daforButtonF.setSelected( false );
 				daforButtonO.setSelected( false );
 				daforButtonR.setSelected( true );
+				
+				currentRecord.setAbundance( 'R' );
 			}
 		});
 		
@@ -176,5 +207,77 @@ public class SpeciesDetailsScreen extends Activity {
 		 */
 		
 	}
+	private void TakePicture(){
 
+			Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		// Ensure that there's a camera activity to handle the intent
+		if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+		// Create the File where the photo should go
+		File photoFile = null;
+		try {
+		photoFile = createImageFile();
+		} catch (IOException ex) {
+		// Error occurred while creating the File
+		
+		}
+		// Continue only if the File was successfully created
+		if (photoFile != null) {
+		takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+		Uri.fromFile(photoFile));
+		startActivityForResult(takePictureIntent, IMAGE_REQUEST_CODE);
+		}
+		}
+	}
+		
+	protected synchronized void buildGoogleApiClient() {
+		mGoogleApiClient = new GoogleApiClient.Builder(this)
+		.addConnectionCallbacks(this)
+		.addOnConnectionFailedListener((OnConnectionFailedListener) this)
+		// add API for gps
+		.addApi(LocationServices.API)
+		.build();
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		//if (!mResolvingError) { // more about this later
+		mGoogleApiClient.connect();
+	// }
+	}
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
+		if (mGoogleApiClient.isConnected())
+		{
+			mGoogleApiClient.disconnect();
+		}
+	}
+	
+	
+	
+	@Override
+	public void onConnected(Bundle connectionHint) {
+		Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+		mGoogleApiClient);
+		
+		if (mLastLocation != null) {
+			mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
+			mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
+		}
+	}
+	
+	
+	@Override
+	public void onConnectionSuspended( int i ) {
+			Log.i(TAG, "Connection suspended");
+			mGoogleApiClient.connect();
+	}
+
+	@Override
+	public void onConnectionFailed(ConnectionResult result)
+	{
+		Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
+	}
 }
