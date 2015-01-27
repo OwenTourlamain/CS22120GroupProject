@@ -1,3 +1,10 @@
+/*
+* @(#) SpeciesDatabase.java 1.1 2015-01-27
+*
+* Copyright (c) 2015 Aberystwyth University.
+* All rights reserved.
+*
+*/ 
 package uk.ac.aber.dcs.CS22120.grouptwelve;
 
 import java.sql.SQLException;
@@ -10,12 +17,18 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+
 /**
- * This is a front-end for the local SQL database,
- * entries can be added/removed/edited from here,
- * then when ready the database will be synchronised
- * with the site.
- */
+* SpeciesDatabase - This is a front-end for the local SQL database.
+* <p>
+* Entries can be added/removed/edited from here,
+* then when ready the database will be synchronised with the site.
+*
+* @author (name)
+* @since 1.0
+* @version 1.X (put status of version here)
+* @see (ref to related classes)
+*/ 
 public class SpeciesDatabase
 {
     private SQLiteDatabase database;
