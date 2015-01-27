@@ -55,7 +55,24 @@ public class RecordingDataSubmitScreen extends Activity {
 		homeButton5.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(v.getContext(), MainActivity.class);
-				
+				startActivity( intent );
+			}
+		});
+
+		// "edit" button
+		Button editButton = (Button) findViewById(R.id.submitButton);
+		editButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), MainActivity.class);
+				startActivityForResult(intent, 0);
+			}
+		});
+
+		// "species list" button
+		Button speciesListButton = (Button) findViewById(R.id.listOfSpecimensButton);
+		speciesListButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), SpeciesSelect.class);
 				try
 				{
 					speciesDb.startSpeciesDatabase();
@@ -100,26 +117,6 @@ public class RecordingDataSubmitScreen extends Activity {
     							}
     						});
 				}
-				
-				
-			}
-		});
-
-		// "edit" button
-		Button editButton = (Button) findViewById(R.id.submitButton);
-		editButton.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent intent = new Intent(v.getContext(), MainActivity.class);
-				startActivityForResult(intent, 0);
-			}
-		});
-
-		// "species list" button
-		Button speciesListButton = (Button) findViewById(R.id.listOfSpecimensButton);
-		speciesListButton.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent intent = new Intent(v.getContext(), SpeciesSelect.class);
-				startActivityForResult(intent, 0);
 			}
 		});
 	}

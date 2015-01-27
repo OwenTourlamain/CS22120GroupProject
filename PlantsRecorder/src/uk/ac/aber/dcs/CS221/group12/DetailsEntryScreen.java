@@ -60,9 +60,9 @@ public class DetailsEntryScreen extends Activity
 				newRecord.setEmail( emailEntryField.getText().toString() );
 				newRecord.setPhoneNumber( phoneEntryField.getText().toString() );
 				
-				Intent intent = new Intent(v.getContext(), SiteCreationScreen.class);
-				intent.putExtra( "newRecord", newRecord );
-				startActivity(intent);
+//				Intent intent = new Intent(v.getContext(), SiteCreationScreen.class);
+//				intent.putExtra( "newRecord", newRecord );
+//				startActivity(intent);
 			}
 		});
 		
