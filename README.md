@@ -1,3 +1,7 @@
+#Repo Description
+
+PlantsProject is the base UI fro the project, the final code is in Plants Recorder 
+
 #TODO-LIST
 
 Ability to add/edit/remove entries is not yet implemented, although the infrastructure is there.
